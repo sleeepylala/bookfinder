@@ -14,7 +14,8 @@ Here you will find every book that you want! After typing your favorite book's c
 [![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript&logoColor=white)](https://www.javascript.com/)
 [![Sass](https://img.shields.io/badge/Sass-pink?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-blueviolet?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![Axios](https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white)]
+[![Axios](https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/)
+[![Lodash]https://img.shields.io/badge/Lodash-3492FF?style=for-the-badge&logo=lodash&logoColor=white")](https://lodash.com/)
 
 # Authors
 
