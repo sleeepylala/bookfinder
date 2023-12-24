@@ -37,9 +37,49 @@ main .h2-container {
 main .h2-container h2 {
   color: #353535;
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
   font-weight: 300;
+}
+
+.container-input-search {
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 80px 100px;
+  display: flex;
+}
+
+.container-input-search #site-search {
+  -webkit-backdrop-filter: blur(12.05px);
+  backdrop-filter: blur(12.05px);
+  color: #353535;
+  background: #dadada33;
+  border: 1px solid #3535351a;
+  border-radius: 150px;
+  width: 460px;
+  max-width: 100%;
+  height: 44px;
+  padding-left: 50px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 250;
+  position: relative;
+}
+
+.container-input-search .btn-search {
+  color: #fff;
+  background: linear-gradient(#ff686b 0%, #fc3e66 100%);
+  border: none;
+  border-radius: 119px;
+  width: 147px;
+  height: 36px;
+  position: absolute;
+}
+
+.btn-search:hover {
+  border: 1px solid #ff686b;
+  border-radius: 17px;
 }
 
 * {
