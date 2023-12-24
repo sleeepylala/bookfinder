@@ -580,7 +580,7 @@ var _lodash = require("lodash");
 var _lodashDefault = parcelHelpers.interopDefault(_lodash);
 var _mainScss = require("../scss/main.scss");
 
-},{"lodash":"3qBDj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../scss/main.scss":"4Pg3x"}],"3qBDj":[function(require,module,exports) {
+},{"lodash":"3qBDj","../scss/main.scss":"4Pg3x","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3qBDj":[function(require,module,exports) {
 var global = arguments[3];
 (function() {
     /** Used as a safe reference for `undefined` in pre-ES5 environments. */ var undefined;
@@ -14812,7 +14812,7 @@ var global = arguments[3];
     root._ = _;
 }).call(this);
 
-},{}],"gkKU3":[function(require,module,exports) {
+},{}],"4Pg3x":[function() {},{}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -14842,6 +14842,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"4Pg3x":[function() {},{}]},["46McK","1SICI"], "1SICI", "parcelRequire28d3")
+},{}]},["46McK","1SICI"], "1SICI", "parcelRequire28d3")
 
 //# sourceMappingURL=index.18dbc454.js.map
