@@ -1,0 +1,31 @@
+main {
+  border: 1px solid green;
+  width: 100%;
+  .h1-container {
+    border: 5px solid red;
+    display: flex;
+    justify-content: flex-start;
+    padding: 100px;
+    padding-bottom: 40px;
+    h1 {
+      font-family: "Pacifico";
+      color: $fontcolor;
+      font-size: 100px;
+      line-height: 126%;
+    }
+  }
+  .h2-container {
+    border: 5px solid rgb(51, 0, 255);
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 100px;
+
+    h2 {
+      font-family: "Poppins";
+      color: $fontcolor;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 20px;
+    }
+  }
+}
