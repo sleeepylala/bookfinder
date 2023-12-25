@@ -11,6 +11,24 @@ nav {
 main {
   border: 1px solid green;
   width: 100%;
+  position: relative;
+}
+
+main .img-girl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+main .img-ball {
+  position: absolute;
+  bottom: 0;
+}
+
+main .img-ball2 {
+  position: absolute;
+  top: 0;
+  left: 30%;
 }
 
 main .h1-container {

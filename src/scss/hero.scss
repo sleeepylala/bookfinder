@@ -1,6 +1,21 @@
 main {
   border: 1px solid green;
   width: 100%;
+  position: relative;
+  .img-girl {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .img-ball {
+    position: absolute;
+    bottom: 0;
+  }
+  .img-ball2 {
+    position: absolute;
+    top: 0;
+    left: 30%;
+  }
   .h1-container {
     border: 5px solid red;
     display: flex;
