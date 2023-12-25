@@ -55,20 +55,23 @@ main {
     padding-left: 50px;
     padding-right: 50px;
   }
-}
-.btn-search {
-  position: relative;
-  border-radius: 119px;
-  width: 147px;
-  height: 36px;
-  margin-left: -155px;
-  cursor: pointer;
-  z-index: 1;
-  background: linear-gradient(180deg, #ff686b 0%, #fc3e66 100%);
-  border: none;
-  color: white;
-}
-.btn-search:hover {
-  border-radius: 17px;
-  border: 1px solid #ff686b;
+
+  .btn-search {
+    position: relative;
+    border-radius: 119px;
+    width: 147px;
+    height: 36px;
+    margin-left: -155px;
+    cursor: pointer;
+    z-index: 1;
+    background: linear-gradient(180deg, #ff686b 0%, #fc3e66 100%);
+    border: none;
+    color: white;
+
+    &:hover {
+      border: 1px solid #ff686b;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
 }
