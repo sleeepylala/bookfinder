@@ -71,6 +71,7 @@ main .h2-container h2 {
 }
 
 .btn-search {
+  cursor: pointer;
   z-index: 1;
   color: #fff;
   background: linear-gradient(#ff686b 0%, #fc3e66 100%);
@@ -78,7 +79,7 @@ main .h2-container h2 {
   border-radius: 119px;
   width: 147px;
   height: 36px;
-  margin-left: -50px;
+  margin-left: -155px;
   position: relative;
 }
 
