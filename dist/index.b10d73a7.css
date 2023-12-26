@@ -141,7 +141,18 @@ footer p {
   position: relative;
 }
 
-.btn-search:hover, .btn-home:hover {
+.btn-description {
+  color: #fff;
+  background-color: #ff686b;
+  border: none;
+  border-radius: 119px;
+  width: 147px;
+  height: 36px;
+  transition: background-color .3s, color .3s;
+  position: relative;
+}
+
+.btn-search:hover, .btn-home:hover, .btn-description:hover {
   cursor: pointer;
   color: #ff686b;
   border: 1px solid #ff686b;
@@ -175,11 +186,46 @@ footer p {
   border-radius: 32px;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   width: 350px;
   height: 550px;
   padding: 20px;
   display: flex;
+}
+
+.container-img-book {
+  background-color: #8a2be2;
+  border-radius: 10%;
+  width: 300px;
+  height: 350px;
+}
+
+.container-text-book {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  display: flex;
+}
+
+.container-text-book h1 {
+  color: #353535;
+  text-align: center;
+  font-family: Pacifico;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.container-text-book h2 {
+  color: #9a8080;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 * {
@@ -188,4 +234,4 @@ footer p {
   padding: 0;
 }
 
-/*# sourceMappingURL=index.b10d73a7.css.map */
+/*# sourceMappingURL=book.b10d73a7.css.map */
