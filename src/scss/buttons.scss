@@ -1,0 +1,25 @@
+.btn-search,
+.btn-home {
+  position: relative;
+  border-radius: 119px;
+  width: 147px;
+  height: 36px;
+  margin-left: -155px;
+  z-index: 2;
+  background-color: #ff686b;
+  border: none;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+.btn-search:hover {
+  border: 1px solid #ff686b;
+  background-color: transparent !important;
+  cursor: pointer;
+  color: #ff686b;
+}
+.btn-home:hover {
+  border: 1px solid #ff686b;
+  background-color: transparent !important;
+  cursor: pointer;
+  color: #ff686b;
+}
