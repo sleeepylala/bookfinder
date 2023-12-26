@@ -15,6 +15,7 @@ main {
 }
 
 main .img-girl {
+  z-index: -1;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -89,22 +90,23 @@ main .h2-container h2 {
 }
 
 .container-input-search .btn-search {
-  cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   color: #fff;
-  background: linear-gradient(#ff686b 0%, #fc3e66 100%);
+  background-color: #ff686b;
   border: none;
   border-radius: 119px;
   width: 147px;
   height: 36px;
   margin-left: -155px;
+  transition: background-color .3s, color .3s;
   position: relative;
 }
 
 .container-input-search .btn-search:hover {
   cursor: pointer;
-  background-color: #0000;
+  color: #ff686b;
   border: 1px solid #ff686b;
+  background-color: #0000 !important;
 }
 
 footer {
