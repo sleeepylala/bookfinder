@@ -12,13 +12,14 @@
   transition: background-color 0.3s, color 0.3s;
 }
 .btn-description {
-  position: relative;
   border-radius: 119px;
   width: 147px;
   height: 36px;
   background-color: #ff686b;
   border: none;
   color: white;
+  position: absolute;
+  bottom: 25;
   transition: background-color 0.3s, color 0.3s;
 }
 .btn-search:hover {

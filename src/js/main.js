@@ -12,13 +12,13 @@ const getCategory = function () {
     .get(`https://openlibrary.org/subjects/${inputSubject}.json`)
     .then((response) => {
       const jsonData = response.data;
-      console.log(jsonData);
 
       // Salva l'oggetto JSON nel Local Storage
       localStorage.setItem("jsonData", JSON.stringify(jsonData));
       localStorage.setItem("inputSubject", inputSubject);
       // Reindirizza alla pagina book.html
       window.location.href = "http://localhost:1234/book.html";
+      return jsonData;
     })
     .catch((error) => {
       console.log(error);

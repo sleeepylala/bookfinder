@@ -27,4 +27,5 @@
     "watcherGlob": "**/*.ico",
     "outputPath": "./build"
   }
+  
 }

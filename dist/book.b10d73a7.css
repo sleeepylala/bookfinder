@@ -150,7 +150,8 @@ footer p {
   width: 147px;
   height: 36px;
   transition: background-color .3s, color .3s;
-  position: relative;
+  position: absolute;
+  bottom: 25px;
 }
 
 .btn-search:hover, .btn-home:hover, .btn-description:hover {
@@ -189,16 +190,22 @@ footer p {
   align-items: center;
   gap: 30px;
   width: 350px;
-  height: 550px;
+  height: 650px;
   padding: 20px;
   display: flex;
+  position: relative;
 }
 
 .container-img-book {
-  background-color: #8a2be2;
   border-radius: 10%;
   width: 300px;
-  height: 350px;
+  height: 400px;
+}
+
+.container-img-book img {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
 }
 
 .container-text-book {
@@ -216,7 +223,7 @@ footer p {
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 40px;
 }
 
 .container-text-book h2 {
