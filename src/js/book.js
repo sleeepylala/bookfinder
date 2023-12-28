@@ -67,9 +67,13 @@ const createCard = function (image, title, authors, description) {
   btnDescription.type = "button";
   btnDescription.className = "btn-description";
   btnDescription.innerText = "description";
-  btnDescription.onclick = () => alert(description);
+  btnDescription.onclick = (key) => {
+    const bookKey = `https://openlibrary.org/works/${key}`;
+  };
+
+  // funzione che crea la modale con la descrizione
+
   card.appendChild(btnDescription);
 
   return card;
-  //append the card to the container in my html
 };
