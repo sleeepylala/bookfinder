@@ -88,13 +88,15 @@ const createCard = function (image, title, authors, key) {
     const overlay = document.createElement("div");
     overlay.className = "overlay";
     document.body.appendChild(overlay);
+    const contentContainer = document.createElement("div");
+    contentContainer.className = "content-container";
 
     const h1TitleModal = document.createElement("h1");
     h1TitleModal.innerText = title;
-    modal.appendChild(h1TitleModal);
+    contentContainer.appendChild(h1TitleModal);
     const h2AuthorModal = document.createElement("h2");
     h2AuthorModal.innerText = authors;
-    modal.appendChild(h2AuthorModal);
+    contentContainer.appendChild(h2AuthorModal);
     const descriptionModal = document.createElement("p");
     if (typeof description === "object") {
       descriptionModal.innerText =
@@ -105,16 +107,23 @@ const createCard = function (image, title, authors, key) {
         description || "Description is not available";
     }
     descriptionModal.className = "description";
-    modal.appendChild(descriptionModal);
+    contentContainer.appendChild(descriptionModal);
+
+    //create and append close description button
+    const btnClose = document.createElement("button");
+    btnClose.type = "button";
+    btnClose.className = "btn-close";
+    btnClose.innerText = "Close";
+    contentContainer.appendChild(btnClose);
+    modal.appendChild(contentContainer);
+    // event listener per chiudere la modale quando si fa clic sul bottone
+    btnClose.onclick = () => {
+      modal.style.display = "none";
+      overlay.remove();
+    };
 
     document.body.appendChild(modal);
     modal.style.display = "block";
-
-    // event listener per chiudere la modale quando si fa clic su di essa
-    modal.addEventListener("click", function () {
-      modal.style.display = "none";
-      overlay.remove();
-    });
   };
 
   card.appendChild(btnDescription);

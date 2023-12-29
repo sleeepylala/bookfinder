@@ -154,6 +154,26 @@ footer p {
   bottom: 25px;
 }
 
+.btn-close {
+  color: #fff;
+  background-color: #ff686b;
+  border: none;
+  border-radius: 119px;
+  width: 147px;
+  height: 36px;
+  transition: background-color .3s, color .3s;
+  position: absolute;
+  bottom: 20px;
+  left: 40%;
+}
+
+.btn-close:hover {
+  cursor: pointer;
+  color: #fff;
+  border: 3px solid #ff686b;
+  background-color: #0000 !important;
+}
+
 .btn-search:hover, .btn-home:hover, .btn-description:hover {
   cursor: pointer;
   color: #ff686b;
@@ -287,6 +307,13 @@ footer p {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.content-container {
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  display: flex;
 }
 
 .overlay {

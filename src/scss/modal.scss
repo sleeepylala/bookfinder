@@ -49,6 +49,13 @@
     line-height: normal;
   }
 }
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%; /* Rendi il contenitore alto al 100% per occupare tutto lo spazio disponibile */
+}
 .overlay {
   position: fixed;
   top: 0;
