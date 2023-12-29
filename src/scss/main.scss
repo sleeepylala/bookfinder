@@ -11,3 +11,16 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $primarycolor;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}

@@ -347,4 +347,17 @@ footer p {
   padding: 0;
 }
 
+body::-webkit-scrollbar {
+  width: .5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #ffddde;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #0000;
+}
+
 /*# sourceMappingURL=book.b10d73a7.css.map */
