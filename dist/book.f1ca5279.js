@@ -597,9 +597,15 @@ window.addEventListener("load", function() {
             containerCards.appendChild(bookCard);
             sectionCards.appendChild(containerCards);
         });
+    }
+    // Event listener per rimuovere i dati quando si fa clic su "Home"
+    const btnHome = document.querySelector(".btn-home");
+    if (btnHome) btnHome.addEventListener("click", function() {
         localStorage.removeItem("jsonData");
         localStorage.removeItem("inputSubject");
-    } else console.log("Nessun dato JSON nel Local Storage");
+        console.log("Dati rimossi dal Local Storage");
+        window.history.back();
+    });
 });
 const createCard = function(image, title, authors, key) {
     let card = document.createElement("div");
@@ -609,7 +615,6 @@ const createCard = function(image, title, authors, key) {
     imgContainer.className = "container-img-book";
     if (image) {
         const img = document.createElement("img");
-        // img.src = image;
         img.src = `https://covers.openlibrary.org/b/id/${image}-L.jpg`;
         img.alt = `Image of the book: ${title}`;
         imgContainer.appendChild(img);

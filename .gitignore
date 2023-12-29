@@ -14,3 +14,4 @@ node_modules
 .sass-cache
 
 .parcel-cache/data.mdb
+.parcel-cache/lock.mdb

@@ -593,6 +593,7 @@ const getCategory = function() {
         localStorage.setItem("inputSubject", inputSubject);
         // Reindirizza alla pagina book.html
         window.location.href = "http://localhost:1234/book.html";
+        inputCategory.value = "";
         return jsonData;
     }).catch((error)=>{
         console.log(error);
