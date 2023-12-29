@@ -1,6 +1,7 @@
 import "../scss/main.scss";
 import _ from "lodash";
 import axios from "axios";
+import { preventImageDrag } from "./main.js";
 
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
@@ -37,6 +38,7 @@ window.addEventListener("load", function () {
       window.history.back();
     });
   }
+  preventImageDrag();
 });
 const createCard = function (image, title, authors, key) {
   let card = document.createElement("div");

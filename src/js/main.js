@@ -30,3 +30,15 @@ buttonSearch.addEventListener("click", (e) => {
   e.preventDefault();
   getCategory();
 });
+
+// drag-prevention.js
+export function preventImageDrag() {
+  const images = document.querySelectorAll("img");
+
+  images.forEach(function (image) {
+    image.addEventListener("dragstart", function (event) {
+      event.preventDefault();
+    });
+  });
+}
+preventImageDrag();

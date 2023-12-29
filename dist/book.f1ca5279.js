@@ -581,6 +581,7 @@ var _lodash = require("lodash");
 var _lodashDefault = parcelHelpers.interopDefault(_lodash);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _mainJs = require("./main.js");
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
 const sectionCards = document.querySelector(".cards");
@@ -605,6 +606,7 @@ window.addEventListener("load", function() {
         console.log("Dati rimossi dal Local Storage");
         window.history.back();
     });
+    (0, _mainJs.preventImageDrag)();
 });
 const createCard = function(image, title, authors, key) {
     let card = document.createElement("div");
@@ -685,6 +687,6 @@ const createCard = function(image, title, authors, key) {
     return card;
 };
 
-},{"../scss/main.scss":"4Pg3x","lodash":"3qBDj","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
+},{"../scss/main.scss":"4Pg3x","lodash":"3qBDj","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main.js":"1SICI"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
 
 //# sourceMappingURL=book.f1ca5279.js.map
