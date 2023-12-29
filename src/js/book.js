@@ -85,6 +85,9 @@ const createCard = function (image, title, authors, key) {
   const createModal = function (title, description) {
     const modal = document.createElement("div");
     modal.className = "modal";
+    const overlay = document.createElement("div");
+    overlay.className = "overlay";
+    document.body.appendChild(overlay);
 
     const h1TitleModal = document.createElement("h1");
     h1TitleModal.innerText = title;
@@ -101,16 +104,16 @@ const createCard = function (image, title, authors, key) {
       descriptionModal.innerText =
         description || "Description is not available";
     }
-    descriptionModal.className = ".description";
+    descriptionModal.className = "description";
     modal.appendChild(descriptionModal);
 
-    containerCards.appendChild(modal);
+    document.body.appendChild(modal);
     modal.style.display = "block";
-    console.log("modale creata");
 
     // event listener per chiudere la modale quando si fa clic su di essa
     modal.addEventListener("click", function () {
       modal.style.display = "none";
+      overlay.remove();
     });
   };
 

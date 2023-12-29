@@ -1,14 +1,20 @@
 .modal {
-  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1040;
+
   width: 801px;
   height: 493px;
-  padding: 61px 20px;
+  padding: 61px 30px;
+  overflow-y: auto;
   flex-direction: column;
   align-items: center;
   gap: 8px;
   border-radius: 32px;
   border: 1.4px solid rgba(255, 255, 255, 0.4);
-  background: var(--Windows-Glass, rgba(128, 128, 128, 0.3));
+  background: var(--Windows-Glass, rgba(163, 163, 163, 0.3));
   background-blend-mode: luminosity;
 
   /* Blur */
@@ -17,12 +23,13 @@
     color: #fff;
     text-align: center;
     font-family: Pacifico;
-    font-size: 30px;
+    font-size: 32px;
     font-style: normal;
     font-weight: 400;
     line-height: 40px;
   }
   h2 {
+    padding-top: 10px;
     color: #fff;
     text-align: center;
     font-family: Poppins;
@@ -32,12 +39,22 @@
     line-height: 20px;
   }
   .description {
+    padding-top: 70px;
     color: #fff;
     text-align: center;
     font-family: Poppins;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
