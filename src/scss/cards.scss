@@ -6,7 +6,7 @@
   height: 100%;
   .container-cards {
     display: flex;
-    width: 1298px;
+    width: 1400px;
     justify-content: space-around;
     gap: 60px 50px;
     flex-wrap: wrap;
@@ -16,7 +16,7 @@
       position: relative;
       border: 3px solid red;
       display: flex;
-      width: 350px;
+      width: 360px;
       height: 650px;
       padding: 20px;
       flex-direction: column;
@@ -28,6 +28,8 @@
         rgba(128, 128, 128, 0.3);
       background-blend-mode: normal, luminosity;
       backdrop-filter: blur(50px);
+      box-shadow: 0px 4px 7.1px 0px rgba(0, 0, 0, 0.13);
+      border: 1px solid $primarycolor;
     }
   }
 }
@@ -40,6 +42,7 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+    border-radius: 10%;
   }
 }
 .container-text-book {
