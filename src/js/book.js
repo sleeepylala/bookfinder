@@ -15,13 +15,12 @@ window.addEventListener("load", function () {
 
     // Process jsonData here
     const arrayBooks = jsonData.works;
-    console.log(arrayBooks);
     arrayBooks.forEach((element) => {
       const bookCard = createCard(
         element.cover_id,
         element.title,
         element.authors[0].name,
-        element.description
+        element.key
       );
       containerCards.appendChild(bookCard);
       sectionCards.appendChild(containerCards);
@@ -34,7 +33,7 @@ window.addEventListener("load", function () {
   }
 });
 
-const createCard = function (image, title, authors, description) {
+const createCard = function (image, title, authors, key) {
   let card = document.createElement("div");
   card.className = "card-book";
   //create and append image container
@@ -67,11 +66,53 @@ const createCard = function (image, title, authors, description) {
   btnDescription.type = "button";
   btnDescription.className = "btn-description";
   btnDescription.innerText = "description";
-  btnDescription.onclick = (key) => {
-    const bookKey = `https://openlibrary.org/works/${key}`;
+  btnDescription.onclick = () => {
+    const bookKey = `https://openlibrary.org${key}.json`;
+    axios
+      .get(bookKey)
+      .then((response) => {
+        const data = response.data;
+        console.log(response.data);
+        const description = data.description || "Description is not available";
+        const bookModal = createModal(data.title, description);
+      })
+      .catch((error) => {
+        console.error(`Description not found: ${error}`);
+      });
   };
 
   // funzione che crea la modale con la descrizione
+  const createModal = function (title, description) {
+    const modal = document.createElement("div");
+    modal.className = "modal";
+
+    const h1TitleModal = document.createElement("h1");
+    h1TitleModal.innerText = title;
+    modal.appendChild(h1TitleModal);
+    const h2AuthorModal = document.createElement("h2");
+    h2AuthorModal.innerText = authors;
+    modal.appendChild(h2AuthorModal);
+    const descriptionModal = document.createElement("p");
+    if (typeof description === "object") {
+      descriptionModal.innerText =
+        description.value || "Description is not available";
+    } else {
+      // Se la descrizione è una stringa, utilizzala direttamente
+      descriptionModal.innerText =
+        description || "Description is not available";
+    }
+    descriptionModal.className = ".description";
+    modal.appendChild(descriptionModal);
+
+    containerCards.appendChild(modal);
+    modal.style.display = "block";
+    console.log("modale creata");
+
+    // event listener per chiudere la modale quando si fa clic su di essa
+    modal.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+  };
 
   card.appendChild(btnDescription);
 

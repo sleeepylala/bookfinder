@@ -1,0 +1,43 @@
+.modal {
+  display: none;
+  width: 801px;
+  height: 493px;
+  padding: 61px 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 32px;
+  border: 1.4px solid rgba(255, 255, 255, 0.4);
+  background: var(--Windows-Glass, rgba(128, 128, 128, 0.3));
+  background-blend-mode: luminosity;
+
+  /* Blur */
+  backdrop-filter: blur(50px);
+  h1 {
+    color: #fff;
+    text-align: center;
+    font-family: Pacifico;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+  }
+  h2 {
+    color: #fff;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .description {
+    color: #fff;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

@@ -12,3 +12,5 @@ node_modules
 
 # Ignora i file SASS di configurazione
 .sass-cache
+
+.parcel-cache/data.mdb
