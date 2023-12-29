@@ -588,7 +588,6 @@ window.addEventListener("load", function() {
     const jsonData = JSON.parse(localStorage.getItem("jsonData"));
     const inputSubject = localStorage.getItem("inputSubject");
     if (jsonData && inputSubject) {
-        console.log(jsonData);
         displayCategory.innerHTML = `${inputSubject} books`;
         // Process jsonData here
         const arrayBooks = jsonData.works;
@@ -657,10 +656,10 @@ const createCard = function(image, title, authors, key) {
         contentContainer.className = "content-container";
         const h1TitleModal = document.createElement("h1");
         h1TitleModal.innerText = title;
-        contentContainer.appendChild(h1TitleModal);
+        modal.appendChild(h1TitleModal);
         const h2AuthorModal = document.createElement("h2");
         h2AuthorModal.innerText = authors;
-        contentContainer.appendChild(h2AuthorModal);
+        modal.appendChild(h2AuthorModal);
         const descriptionModal = document.createElement("p");
         if (typeof description === "object") descriptionModal.innerText = description.value || "Description is not available";
         else // Se la descrizione è una stringa, utilizzala direttamente
