@@ -633,10 +633,11 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(error);
         }
     };
-    if (buttonSearch) buttonSearch.addEventListener("click", btnSearch);
-    else if (inputCategory) inputCategory.addEventListener("keydown", (event)=>{
-        if (event.key === "Enter") btnSearch(event);
-    });
+    const btnSearchHandler = (event)=>{
+        if (event.key === "Enter" || event.type === "click") btnSearch(event);
+    };
+    if (buttonSearch) buttonSearch.addEventListener("click", btnSearchHandler);
+    if (inputCategory) inputCategory.addEventListener("keydown", btnSearchHandler);
     function btnSearch(event) {
         event.preventDefault();
         getCategory();

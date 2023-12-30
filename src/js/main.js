@@ -59,14 +59,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  const btnSearchHandler = (event) => {
+    if (event.key === "Enter" || event.type === "click") {
+      btnSearch(event);
+    }
+  };
+
   if (buttonSearch) {
-    buttonSearch.addEventListener("click", btnSearch);
-  } else if (inputCategory) {
-    inputCategory.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        btnSearch(event);
-      }
-    });
+    buttonSearch.addEventListener("click", btnSearchHandler);
+  }
+
+  if (inputCategory) {
+    inputCategory.addEventListener("keydown", btnSearchHandler);
   }
 
   function btnSearch(event) {
