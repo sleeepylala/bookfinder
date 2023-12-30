@@ -687,6 +687,6 @@ const createCard = function(image, title, authors, key) {
     return card;
 };
 
-},{"../scss/main.scss":"4Pg3x","lodash":"3qBDj","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./main.js":"1SICI"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
+},{"../scss/main.scss":"4Pg3x","lodash":"3qBDj","axios":"jo6P5","./main.js":"1SICI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
 
 //# sourceMappingURL=book.f1ca5279.js.map

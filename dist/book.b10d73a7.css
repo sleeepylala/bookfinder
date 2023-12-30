@@ -203,6 +203,8 @@ footer p {
   background-blend-mode: normal, luminosity;
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(0deg, #fff2f2 0% 100%), #8080804d;
   border: 1px solid #ffddde;
   border-radius: 32px;
@@ -212,25 +214,33 @@ footer p {
   width: 360px;
   height: 650px;
   padding: 20px;
+  transition-property: box-shadow, transform;
+  transition-duration: .3s;
   display: flex;
   position: relative;
-  box-shadow: 0 4px 7.1px #00000021;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px #0000;
 }
 
-.container-img-book {
+.cards .container-cards .card-book:hover {
+  transform: scale(1.1);
+  box-shadow: 10px 10px 5px #0003;
+}
+
+.cards .container-cards .container-img-book {
   border-radius: 10%;
   width: 300px;
   height: 400px;
 }
 
-.container-img-book img {
+.cards .container-cards .container-img-book img {
   object-fit: fill;
   border-radius: 10%;
   width: 100%;
   height: 100%;
 }
 
-.container-text-book {
+.cards .container-cards .container-text-book {
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -238,7 +248,7 @@ footer p {
   display: flex;
 }
 
-.container-text-book h1 {
+.cards .container-cards .container-text-book h1 {
   color: #353535;
   text-align: center;
   font-family: Pacifico;
@@ -248,7 +258,7 @@ footer p {
   line-height: 40px;
 }
 
-.container-text-book h2 {
+.cards .container-cards .container-text-book h2 {
   color: #9a8080;
   text-align: center;
   font-family: Poppins;
