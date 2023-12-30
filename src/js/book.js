@@ -2,6 +2,7 @@ import "../scss/main.scss";
 import _ from "lodash";
 import axios from "axios";
 import { preventImageDrag } from "./main.js";
+import { isValidCategory } from "./main.js";
 
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
