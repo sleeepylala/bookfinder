@@ -584,58 +584,64 @@ var _lodashDefault = parcelHelpers.interopDefault(_lodash);
 var _mainScss = require("../scss/main.scss");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-const buttonSearch = document.querySelector(".btn-search");
-const inputCategory = document.querySelector("#site-search");
-const isValidCategory = function(input) {
-    const validCategories = [
-        "fiction",
-        "non-fiction",
-        "mystery",
-        "science fiction",
-        "fantasy",
-        "romance",
-        "thriller",
-        "horror",
-        "biography",
-        "autobiography",
-        "history",
-        "science",
-        "self-help",
-        "cooking",
-        "travel",
-        "art",
-        "poetry",
-        "children's",
-        "young adult",
-        "love"
-    ];
-    const normalizedInput = input.toLowerCase();
-    return validCategories.includes(normalizedInput);
-};
-// axios
-const getCategory = async function() {
-    const inputSubject = inputCategory.value;
-    if (!isValidCategory(inputSubject)) {
-        alert("Invalid input. Please enter a valid category.");
-        return;
+document.addEventListener("DOMContentLoaded", function() {
+    const buttonSearch = document.querySelector(".btn-search");
+    const inputCategory = document.querySelector("#site-search");
+    const isValidCategory = function(input) {
+        const validCategories = [
+            "fiction",
+            "non-fiction",
+            "mystery",
+            "science fiction",
+            "fantasy",
+            "romance",
+            "thriller",
+            "horror",
+            "biography",
+            "autobiography",
+            "history",
+            "science",
+            "self-help",
+            "cooking",
+            "travel",
+            "art",
+            "poetry",
+            "children's",
+            "young adult",
+            "love"
+        ];
+        const normalizedInput = input.toLowerCase();
+        return validCategories.includes(normalizedInput);
+    };
+    const getCategory = async function() {
+        const inputSubject = inputCategory.value;
+        if (!isValidCategory(inputSubject)) {
+            alert("Invalid input. Please enter a valid category.");
+            return;
+        }
+        try {
+            const response = await (0, _axiosDefault.default).get(`https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json`);
+            const jsonData = response.data;
+            // Salva l'oggetto JSON nel Local Storage
+            localStorage.setItem("jsonData", JSON.stringify(jsonData));
+            localStorage.setItem("inputSubject", inputSubject);
+            // Reindirizza alla pagina book.html
+            window.location.href = "http://localhost:1234/book.html";
+            inputCategory.value = "";
+            return jsonData;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    if (buttonSearch) buttonSearch.addEventListener("click", btnSearch);
+    else if (inputCategory) inputCategory.addEventListener("keydown", (event)=>{
+        if (event.key === "Enter") btnSearch(event);
+    });
+    function btnSearch(event) {
+        event.preventDefault();
+        getCategory();
     }
-    try {
-        const response = await (0, _axiosDefault.default).get(`https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json`);
-        const jsonData = response.data;
-        // Salva l'oggetto JSON nel Local Storage
-        localStorage.setItem("jsonData", JSON.stringify(jsonData));
-        localStorage.setItem("inputSubject", inputSubject);
-        // Reindirizza alla pagina book.html
-        window.location.href = "http://localhost:1234/book.html";
-        inputCategory.value = "";
-        return jsonData;
-    } catch (error) {
-        console.log(error);
-    }
-};
-buttonSearch.addEventListener("click", (e)=>{
-    e.preventDefault();
-    getCategory();
+    preventImageDrag();
 });
 function preventImageDrag() {
     const images = document.querySelectorAll("img");
@@ -645,7 +651,6 @@ function preventImageDrag() {
         });
     });
 }
-preventImageDrag();
 
 },{"lodash":"3qBDj","../scss/main.scss":"4Pg3x","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3qBDj":[function(require,module,exports) {
 var global = arguments[3];
