@@ -351,6 +351,69 @@ footer p {
   left: 0;
 }
 
+.container-page {
+  border: 3px solid red;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30vh;
+  display: flex;
+}
+
+.container-page .pagination {
+  color: #383838;
+  background-color: #fff;
+  border-radius: 6px;
+  align-items: center;
+  padding: 10px 40px;
+  display: flex;
+}
+
+.container-page .pagination ul {
+  margin: 20px;
+}
+
+ul li {
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin: 0 10px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 45px;
+  display: inline-block;
+}
+
+ul li.active {
+  color: #fff;
+  background-image: linear-gradient(#ff4568, #ff4568);
+  background-repeat: no-repeat;
+}
+
+.btn1, .btn2 {
+  color: #383838;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 500;
+  display: inline-flex;
+}
+
+.btn1 .arrow-left, .btn2 .arrow-left {
+  width: 30px;
+  margin-right: 15px;
+}
+
+.btn1 .arrow-right, .btn2 .arrow-right {
+  width: 30px;
+  margin-left: 15px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

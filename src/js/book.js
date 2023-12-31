@@ -7,8 +7,51 @@ import { isValidCategory } from "./main.js";
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
 const sectionCards = document.querySelector(".cards");
+const link = document.querySelectorAll(".link");
+const btnBack = document.querySelector(".btn1");
+const btnNext = document.querySelector(".btn2");
+
+let currentValue = 1;
+
+function activeLink(event) {
+  for (let l of link) {
+    l.classList.remove("active");
+  }
+  event.target.classList.add("active");
+  currentValue = event.target.value;
+}
+function backBtn() {
+  if (currentValue > 1) {
+    for (let l of link) {
+      l.classList.remove("active");
+    }
+    currentValue--;
+    link[currentValue - 1].classList.add("active");
+  }
+}
+function nextBtn() {
+  if (currentValue < 6) {
+    for (let l of link) {
+      l.classList.remove("active");
+    }
+    currentValue++;
+    link[currentValue - 1].classList.add("active");
+  }
+}
 
 window.addEventListener("load", function () {
+  for (let l of link) {
+    l.addEventListener("click", activeLink);
+  }
+
+  if (btnBack) {
+    btnBack.addEventListener("click", backBtn);
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener("click", nextBtn);
+  }
+
   const jsonData = JSON.parse(localStorage.getItem("jsonData"));
   const inputSubject = localStorage.getItem("inputSubject");
 
