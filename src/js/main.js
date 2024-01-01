@@ -1,47 +1,54 @@
+// Import delle risorse esterne
 import _ from "lodash";
 import "../scss/main.scss";
 import axios from "axios";
 
+// Funzione principale che si attiva quando il DOM è completamente caricato
 document.addEventListener("DOMContentLoaded", function () {
+  // Seleziona gli elementi del DOM
   const buttonSearch = document.querySelector(".btn-search");
   const inputCategory = document.querySelector("#site-search");
 
-  const isValidCategory = function (input) {
-    const validCategories = [
-      "fiction",
-      "non-fiction",
-      "mystery",
-      "science fiction",
-      "fantasy",
-      "romance",
-      "thriller",
-      "horror",
-      "biography",
-      "autobiography",
-      "history",
-      "science",
-      "self-help",
-      "cooking",
-      "travel",
-      "art",
-      "poetry",
-      "children's",
-      "young adult",
-      "love",
-    ];
-    const normalizedInput = input.toLowerCase();
-    return validCategories.includes(normalizedInput);
-  };
+  // Array di categorie valide
+  const validCategories = [
+    "fiction",
+    "non-fiction",
+    "mystery",
+    "science fiction",
+    "fantasy",
+    "romance",
+    "thriller",
+    "horror",
+    "biography",
+    "autobiography",
+    "history",
+    "science",
+    "self-help",
+    "cooking",
+    "travel",
+    "art",
+    "poetry",
+    "children's",
+    "young adult",
+    "love",
+  ];
 
-  const getCategory = async function () {
+  // Funzione che verifica se una categoria è valida
+  const isValidCategory = (input) =>
+    validCategories.includes(input.toLowerCase());
+
+  // Funzione che ottiene i dati della categoria dalla Open Library
+  const getCategory = async () => {
     const inputSubject = inputCategory.value;
 
+    // Verifica se la categoria è valida
     if (!isValidCategory(inputSubject)) {
       alert("Invalid input. Please enter a valid category.");
       return;
     }
 
     try {
+      // Effettua una richiesta alla Open Library per ottenere i dati della categoria
       const response = await axios.get(
         `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=72`
       );
@@ -50,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Salva l'oggetto JSON nel Local Storage
       localStorage.setItem("jsonData", JSON.stringify(jsonData));
       localStorage.setItem("inputSubject", inputSubject);
+
       // Reindirizza alla pagina book.html
       window.location.href = "http://localhost:1234/book.html";
       inputCategory.value = "";
@@ -59,12 +67,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  // Gestore dell'evento di clic sulla ricerca
   const btnSearchHandler = (event) => {
+    // Verifica se l'evento è un tasto "Enter" o un clic
     if (event.key === "Enter" || event.type === "click") {
-      btnSearch(event);
+      event.preventDefault();
+      getCategory();
     }
   };
 
+  // Aggiunge gli eventi ai pulsanti di ricerca e all'input
   if (buttonSearch) {
     buttonSearch.addEventListener("click", btnSearchHandler);
   }
@@ -73,20 +85,16 @@ document.addEventListener("DOMContentLoaded", function () {
     inputCategory.addEventListener("keydown", btnSearchHandler);
   }
 
-  function btnSearch(event) {
-    event.preventDefault();
-    getCategory();
-  }
-
   preventImageDrag();
 });
 
 // drag-prevention.js
+// Funzione per prevenire il trascinamento delle immagini
 export function preventImageDrag() {
   const images = document.querySelectorAll("img");
 
-  images.forEach(function (image) {
-    image.addEventListener("dragstart", function (event) {
+  images.forEach((image) => {
+    image.addEventListener("dragstart", (event) => {
       event.preventDefault();
     });
   });

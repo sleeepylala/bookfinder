@@ -2,13 +2,14 @@ import "../scss/main.scss";
 import axios from "axios";
 import { preventImageDrag } from "./main.js";
 
+// Seleziono gli elementi del DOM una sola volta
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
-const sectionCards = document.querySelector(".cards");
 const link = document.querySelectorAll(".link");
 const btnBack = document.querySelector(".btn1");
 const btnNext = document.querySelector(".btn2");
 
+// Recupero i dati dal localStorage
 const jsonData = JSON.parse(localStorage.getItem("jsonData"));
 const inputSubject = localStorage.getItem("inputSubject");
 
@@ -16,27 +17,142 @@ let currentPage = 1;
 const itemsPerPage = 12;
 let arrayBooks = [];
 
+// Funzione per rendere il corpo della pagina visibile scorrendo in modo smooth
+function scrollToTop() {
+  document.body.scrollIntoView({ behavior: "smooth" });
+}
+
+// Funzione per creare una card
+const createCard = function (image, title, authors, key) {
+  const card = document.createElement("div");
+  card.className = "card-book";
+
+  // Funzione per creare un elemento immagine
+  const createImageElement = () => {
+    const imgContainer = document.createElement("div");
+    imgContainer.className = "container-img-book";
+
+    if (image) {
+      const img = document.createElement("img");
+      img.src = `https://covers.openlibrary.org/b/id/${image}-L.jpg`;
+      img.alt = `Image of the book: ${title}`;
+      imgContainer.appendChild(img);
+    }
+
+    card.appendChild(imgContainer);
+  };
+
+  // Funzione per creare un elemento testo
+  const createTextElement = () => {
+    const textContainer = document.createElement("div");
+    textContainer.className = "container-text-book";
+
+    const h1Title = document.createElement("h1");
+    h1Title.innerText = title;
+    textContainer.appendChild(h1Title);
+
+    const h2Author = document.createElement("h2");
+    h2Author.innerText = authors;
+    textContainer.appendChild(h2Author);
+
+    card.appendChild(textContainer);
+  };
+
+  // Funzione per creare un bottone di descrizione
+  const createDescriptionButton = () => {
+    const btnDescription = document.createElement("button");
+    btnDescription.type = "button";
+    btnDescription.className = "btn-description";
+    btnDescription.innerText = "description";
+
+    btnDescription.onclick = () => {
+      const bookKey = `https://openlibrary.org${key}.json`;
+
+      axios
+        .get(bookKey)
+        .then((response) => {
+          const data = response.data;
+          const description =
+            data.description || "Description is not available";
+          const bookModal = createModal(data.title, description, authors);
+        })
+        .catch((error) => {
+          console.error(`Description not found: ${error}`);
+        });
+    };
+
+    card.appendChild(btnDescription);
+  };
+
+  createImageElement();
+  createTextElement();
+  createDescriptionButton();
+
+  return card;
+};
+
+// Funzione per creare una modale
+const createModal = function (title, description, authors) {
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  document.body.appendChild(overlay);
+  const contentContainer = document.createElement("div");
+  contentContainer.className = "content-container";
+
+  const h1TitleModal = document.createElement("h1");
+  h1TitleModal.innerText = title;
+  modal.appendChild(h1TitleModal);
+
+  const h2AuthorModal = document.createElement("h2");
+  h2AuthorModal.innerText = authors;
+  modal.appendChild(h2AuthorModal);
+
+  const descriptionModal = document.createElement("p");
+  descriptionModal.innerText =
+    typeof description === "object"
+      ? description.value || "Description is not available"
+      : description || "Description is not available";
+  descriptionModal.className = "description";
+  contentContainer.appendChild(descriptionModal);
+
+  const btnClose = document.createElement("button");
+  btnClose.type = "button";
+  btnClose.className = "btn-close";
+  btnClose.innerText = "Close";
+  contentContainer.appendChild(btnClose);
+  modal.appendChild(contentContainer);
+
+  btnClose.onclick = () => {
+    modal.style.display = "none";
+    overlay.remove();
+  };
+
+  document.body.appendChild(modal);
+  modal.style.display = "block";
+};
+
+// Funzione per renderizzare le carte dei libri
 function renderBooks() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const booksToDisplay = arrayBooks.slice(startIndex, endIndex);
-  document.body.scrollIntoView({ behavior: "smooth" });
 
+  scrollToTop();
   containerCards.innerHTML = "";
 
   booksToDisplay.forEach((element) => {
-    const bookCard = createCard(
-      element.cover_id,
-      element.title,
-      element.authors[0].name,
-      element.key
-    );
+    const { cover_id, title, authors, key } = element;
+    const bookCard = createCard(cover_id, title, authors[0].name, key);
     containerCards.appendChild(bookCard);
   });
 }
 
+// Funzione per aggiornare la paginazione
 function updatePagination() {
   const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
+
   link.forEach((el, index) => {
     el.value = index + 1;
     el.classList.toggle("active", currentPage === el.value);
@@ -46,23 +162,26 @@ function updatePagination() {
   btnNext.disabled = currentPage === totalPages;
 }
 
+// Funzione per caricare i libri
 function loadBooks() {
   if (jsonData && inputSubject) {
     displayCategory.innerHTML = `${inputSubject} books`;
     arrayBooks = jsonData.works;
     renderBooks();
     updatePagination();
-    document.body.scrollIntoView({ behavior: "smooth" });
+    scrollToTop();
   }
 }
 
-function activeLink(event) {
+// Funzione per gestire il click sui link
+function handleLinkClick(event) {
   currentPage = parseInt(event.target.value);
   renderBooks();
   updatePagination();
 }
 
-function backBtn() {
+// Funzione per gestire il click sul pulsante "Indietro"
+function handleBackBtnClick() {
   if (currentPage > 1) {
     currentPage--;
     renderBooks();
@@ -70,7 +189,8 @@ function backBtn() {
   }
 }
 
-function nextBtn() {
+// Funzione per gestire il click sul pulsante "Avanti"
+function handleNextBtnClick() {
   const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
   if (currentPage < totalPages) {
     currentPage++;
@@ -79,17 +199,16 @@ function nextBtn() {
   }
 }
 
+// Aggiungo gli eventi agli elementi del DOM una volta che la pagina è caricata
 window.addEventListener("load", function () {
-  for (let l of link) {
-    l.addEventListener("click", activeLink);
-  }
+  link.forEach((l) => l.addEventListener("click", handleLinkClick));
 
   if (btnBack) {
-    btnBack.addEventListener("click", backBtn);
+    btnBack.addEventListener("click", handleBackBtnClick);
   }
 
   if (btnNext) {
-    btnNext.addEventListener("click", nextBtn);
+    btnNext.addEventListener("click", handleNextBtnClick);
   }
 
   const btnHome = document.querySelector(".btn-home");
@@ -105,100 +224,3 @@ window.addEventListener("load", function () {
   preventImageDrag();
   loadBooks();
 });
-
-const createCard = function (image, title, authors, key) {
-  let card = document.createElement("div");
-  card.className = "card-book";
-  //create and append image container
-  const imgContainer = document.createElement("div");
-  imgContainer.className = "container-img-book";
-  if (image) {
-    const img = document.createElement("img");
-    img.src = `https://covers.openlibrary.org/b/id/${image}-L.jpg`;
-    img.alt = `Image of the book: ${title}`;
-    imgContainer.appendChild(img);
-  }
-  card.appendChild(imgContainer);
-
-  // create and append text container
-  const textContainer = document.createElement("div");
-  textContainer.className = "container-text-book";
-
-  const h1Title = document.createElement("h1");
-  h1Title.innerText = title;
-  textContainer.appendChild(h1Title);
-  const h2Author = document.createElement("h2");
-  h2Author.innerText = authors;
-  textContainer.appendChild(h2Author);
-
-  card.appendChild(textContainer);
-
-  //create and append description button
-  const btnDescription = document.createElement("button");
-  btnDescription.type = "button";
-  btnDescription.className = "btn-description";
-  btnDescription.innerText = "description";
-  btnDescription.onclick = () => {
-    const bookKey = `https://openlibrary.org${key}.json`;
-    axios
-      .get(bookKey)
-      .then((response) => {
-        const data = response.data;
-        console.log(response.data);
-        const description = data.description || "Description is not available";
-        const bookModal = createModal(data.title, description);
-      })
-      .catch((error) => {
-        console.error(`Description not found: ${error}`);
-      });
-  };
-
-  // funzione che crea la modale con la descrizione
-  const createModal = function (title, description) {
-    const modal = document.createElement("div");
-    modal.className = "modal";
-    const overlay = document.createElement("div");
-    overlay.className = "overlay";
-    document.body.appendChild(overlay);
-    const contentContainer = document.createElement("div");
-    contentContainer.className = "content-container";
-
-    const h1TitleModal = document.createElement("h1");
-    h1TitleModal.innerText = title;
-    modal.appendChild(h1TitleModal);
-    const h2AuthorModal = document.createElement("h2");
-    h2AuthorModal.innerText = authors;
-    modal.appendChild(h2AuthorModal);
-    const descriptionModal = document.createElement("p");
-    if (typeof description === "object") {
-      descriptionModal.innerText =
-        description.value || "Description is not available";
-    } else {
-      // Se la descrizione è una stringa, utilizzala direttamente
-      descriptionModal.innerText =
-        description || "Description is not available";
-    }
-    descriptionModal.className = "description";
-    contentContainer.appendChild(descriptionModal);
-
-    //create and append close description button
-    const btnClose = document.createElement("button");
-    btnClose.type = "button";
-    btnClose.className = "btn-close";
-    btnClose.innerText = "Close";
-    contentContainer.appendChild(btnClose);
-    modal.appendChild(contentContainer);
-    // event listener per chiudere la modale quando si fa clic sul bottone
-    btnClose.onclick = () => {
-      modal.style.display = "none";
-      overlay.remove();
-    };
-
-    document.body.appendChild(modal);
-    modal.style.display = "block";
-  };
-
-  card.appendChild(btnDescription);
-
-  return card;
-};

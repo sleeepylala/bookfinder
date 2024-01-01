@@ -575,51 +575,57 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"1SICI":[function(require,module,exports) {
+// Import delle risorse esterne
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // drag-prevention.js
+// Funzione per prevenire il trascinamento delle immagini
 parcelHelpers.export(exports, "preventImageDrag", ()=>preventImageDrag);
 var _lodash = require("lodash");
 var _lodashDefault = parcelHelpers.interopDefault(_lodash);
 var _mainScss = require("../scss/main.scss");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+// Funzione principale che si attiva quando il DOM è completamente caricato
 document.addEventListener("DOMContentLoaded", function() {
+    // Seleziona gli elementi del DOM
     const buttonSearch = document.querySelector(".btn-search");
     const inputCategory = document.querySelector("#site-search");
-    const isValidCategory = function(input) {
-        const validCategories = [
-            "fiction",
-            "non-fiction",
-            "mystery",
-            "science fiction",
-            "fantasy",
-            "romance",
-            "thriller",
-            "horror",
-            "biography",
-            "autobiography",
-            "history",
-            "science",
-            "self-help",
-            "cooking",
-            "travel",
-            "art",
-            "poetry",
-            "children's",
-            "young adult",
-            "love"
-        ];
-        const normalizedInput = input.toLowerCase();
-        return validCategories.includes(normalizedInput);
-    };
-    const getCategory = async function() {
+    // Array di categorie valide
+    const validCategories = [
+        "fiction",
+        "non-fiction",
+        "mystery",
+        "science fiction",
+        "fantasy",
+        "romance",
+        "thriller",
+        "horror",
+        "biography",
+        "autobiography",
+        "history",
+        "science",
+        "self-help",
+        "cooking",
+        "travel",
+        "art",
+        "poetry",
+        "children's",
+        "young adult",
+        "love"
+    ];
+    // Funzione che verifica se una categoria è valida
+    const isValidCategory = (input)=>validCategories.includes(input.toLowerCase());
+    // Funzione che ottiene i dati della categoria dalla Open Library
+    const getCategory = async ()=>{
         const inputSubject = inputCategory.value;
+        // Verifica se la categoria è valida
         if (!isValidCategory(inputSubject)) {
             alert("Invalid input. Please enter a valid category.");
             return;
         }
         try {
+            // Effettua una richiesta alla Open Library per ottenere i dati della categoria
             const response = await (0, _axiosDefault.default).get(`https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=72`);
             const jsonData = response.data;
             // Salva l'oggetto JSON nel Local Storage
@@ -633,21 +639,23 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(error);
         }
     };
+    // Gestore dell'evento di clic sulla ricerca
     const btnSearchHandler = (event)=>{
-        if (event.key === "Enter" || event.type === "click") btnSearch(event);
+        // Verifica se l'evento è un tasto "Enter" o un clic
+        if (event.key === "Enter" || event.type === "click") {
+            event.preventDefault();
+            getCategory();
+        }
     };
+    // Aggiunge gli eventi ai pulsanti di ricerca e all'input
     if (buttonSearch) buttonSearch.addEventListener("click", btnSearchHandler);
     if (inputCategory) inputCategory.addEventListener("keydown", btnSearchHandler);
-    function btnSearch(event) {
-        event.preventDefault();
-        getCategory();
-    }
     preventImageDrag();
 });
 function preventImageDrag() {
     const images = document.querySelectorAll("img");
-    images.forEach(function(image) {
-        image.addEventListener("dragstart", function(event) {
+    images.forEach((image)=>{
+        image.addEventListener("dragstart", (event)=>{
             event.preventDefault();
         });
     });
