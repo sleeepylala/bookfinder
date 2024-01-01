@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await axios.get(
-        `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json`
+        `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=72`
       );
       const jsonData = response.data;
 

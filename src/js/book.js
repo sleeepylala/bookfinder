@@ -1,8 +1,6 @@
 import "../scss/main.scss";
-import _ from "lodash";
 import axios from "axios";
 import { preventImageDrag } from "./main.js";
-import { isValidCategory } from "./main.js";
 
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
@@ -11,31 +9,73 @@ const link = document.querySelectorAll(".link");
 const btnBack = document.querySelector(".btn1");
 const btnNext = document.querySelector(".btn2");
 
-let currentValue = 1;
+const jsonData = JSON.parse(localStorage.getItem("jsonData"));
+const inputSubject = localStorage.getItem("inputSubject");
+
+let currentPage = 1;
+const itemsPerPage = 12;
+let arrayBooks = [];
+
+function renderBooks() {
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const booksToDisplay = arrayBooks.slice(startIndex, endIndex);
+  document.body.scrollIntoView({ behavior: "smooth" });
+
+  containerCards.innerHTML = "";
+
+  booksToDisplay.forEach((element) => {
+    const bookCard = createCard(
+      element.cover_id,
+      element.title,
+      element.authors[0].name,
+      element.key
+    );
+    containerCards.appendChild(bookCard);
+  });
+}
+
+function updatePagination() {
+  const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
+  link.forEach((el, index) => {
+    el.value = index + 1;
+    el.classList.toggle("active", currentPage === el.value);
+  });
+
+  btnBack.disabled = currentPage === 1;
+  btnNext.disabled = currentPage === totalPages;
+}
+
+function loadBooks() {
+  if (jsonData && inputSubject) {
+    displayCategory.innerHTML = `${inputSubject} books`;
+    arrayBooks = jsonData.works;
+    renderBooks();
+    updatePagination();
+    document.body.scrollIntoView({ behavior: "smooth" });
+  }
+}
 
 function activeLink(event) {
-  for (let l of link) {
-    l.classList.remove("active");
-  }
-  event.target.classList.add("active");
-  currentValue = event.target.value;
+  currentPage = parseInt(event.target.value);
+  renderBooks();
+  updatePagination();
 }
+
 function backBtn() {
-  if (currentValue > 1) {
-    for (let l of link) {
-      l.classList.remove("active");
-    }
-    currentValue--;
-    link[currentValue - 1].classList.add("active");
+  if (currentPage > 1) {
+    currentPage--;
+    renderBooks();
+    updatePagination();
   }
 }
+
 function nextBtn() {
-  if (currentValue < 6) {
-    for (let l of link) {
-      l.classList.remove("active");
-    }
-    currentValue++;
-    link[currentValue - 1].classList.add("active");
+  const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderBooks();
+    updatePagination();
   }
 }
 
@@ -52,27 +92,6 @@ window.addEventListener("load", function () {
     btnNext.addEventListener("click", nextBtn);
   }
 
-  const jsonData = JSON.parse(localStorage.getItem("jsonData"));
-  const inputSubject = localStorage.getItem("inputSubject");
-
-  if (jsonData && inputSubject) {
-    displayCategory.innerHTML = `${inputSubject} books`;
-
-    // Process jsonData here
-    const arrayBooks = jsonData.works;
-    arrayBooks.forEach((element) => {
-      const bookCard = createCard(
-        element.cover_id,
-        element.title,
-        element.authors[0].name,
-        element.key
-      );
-      containerCards.appendChild(bookCard);
-      sectionCards.appendChild(containerCards);
-    });
-  }
-
-  // Event listener per rimuovere i dati quando si fa clic su "Home"
   const btnHome = document.querySelector(".btn-home");
   if (btnHome) {
     btnHome.addEventListener("click", function () {
@@ -82,8 +101,11 @@ window.addEventListener("load", function () {
       window.history.back();
     });
   }
+
   preventImageDrag();
+  loadBooks();
 });
+
 const createCard = function (image, title, authors, key) {
   let card = document.createElement("div");
   card.className = "card-book";

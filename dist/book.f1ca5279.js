@@ -577,8 +577,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"d4dL5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _mainScss = require("../scss/main.scss");
-var _lodash = require("lodash");
-var _lodashDefault = parcelHelpers.interopDefault(_lodash);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _mainJs = require("./main.js");
@@ -588,43 +586,68 @@ const sectionCards = document.querySelector(".cards");
 const link = document.querySelectorAll(".link");
 const btnBack = document.querySelector(".btn1");
 const btnNext = document.querySelector(".btn2");
-let currentValue = 1;
+const jsonData = JSON.parse(localStorage.getItem("jsonData"));
+const inputSubject = localStorage.getItem("inputSubject");
+let currentPage = 1;
+const itemsPerPage = 12;
+let arrayBooks = [];
+function renderBooks() {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const booksToDisplay = arrayBooks.slice(startIndex, endIndex);
+    document.body.scrollIntoView({
+        behavior: "smooth"
+    });
+    containerCards.innerHTML = "";
+    booksToDisplay.forEach((element)=>{
+        const bookCard = createCard(element.cover_id, element.title, element.authors[0].name, element.key);
+        containerCards.appendChild(bookCard);
+    });
+}
+function updatePagination() {
+    const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
+    link.forEach((el, index)=>{
+        el.value = index + 1;
+        el.classList.toggle("active", currentPage === el.value);
+    });
+    btnBack.disabled = currentPage === 1;
+    btnNext.disabled = currentPage === totalPages;
+}
+function loadBooks() {
+    if (jsonData && inputSubject) {
+        displayCategory.innerHTML = `${inputSubject} books`;
+        arrayBooks = jsonData.works;
+        renderBooks();
+        updatePagination();
+        document.body.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+}
 function activeLink(event) {
-    for (let l of link)l.classList.remove("active");
-    event.target.classList.add("active");
-    currentValue = event.target.value;
+    currentPage = parseInt(event.target.value);
+    renderBooks();
+    updatePagination();
 }
 function backBtn() {
-    if (currentValue > 1) {
-        for (let l of link)l.classList.remove("active");
-        currentValue--;
-        link[currentValue - 1].classList.add("active");
+    if (currentPage > 1) {
+        currentPage--;
+        renderBooks();
+        updatePagination();
     }
 }
 function nextBtn() {
-    if (currentValue < 6) {
-        for (let l of link)l.classList.remove("active");
-        currentValue++;
-        link[currentValue - 1].classList.add("active");
+    const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderBooks();
+        updatePagination();
     }
 }
 window.addEventListener("load", function() {
     for (let l of link)l.addEventListener("click", activeLink);
     if (btnBack) btnBack.addEventListener("click", backBtn);
     if (btnNext) btnNext.addEventListener("click", nextBtn);
-    const jsonData = JSON.parse(localStorage.getItem("jsonData"));
-    const inputSubject = localStorage.getItem("inputSubject");
-    if (jsonData && inputSubject) {
-        displayCategory.innerHTML = `${inputSubject} books`;
-        // Process jsonData here
-        const arrayBooks = jsonData.works;
-        arrayBooks.forEach((element)=>{
-            const bookCard = createCard(element.cover_id, element.title, element.authors[0].name, element.key);
-            containerCards.appendChild(bookCard);
-            sectionCards.appendChild(containerCards);
-        });
-    }
-    // Event listener per rimuovere i dati quando si fa clic su "Home"
     const btnHome = document.querySelector(".btn-home");
     if (btnHome) btnHome.addEventListener("click", function() {
         localStorage.removeItem("jsonData");
@@ -633,6 +656,7 @@ window.addEventListener("load", function() {
         window.history.back();
     });
     (0, _mainJs.preventImageDrag)();
+    loadBooks();
 });
 const createCard = function(image, title, authors, key) {
     let card = document.createElement("div");
@@ -713,6 +737,6 @@ const createCard = function(image, title, authors, key) {
     return card;
 };
 
-},{"../scss/main.scss":"4Pg3x","lodash":"3qBDj","axios":"jo6P5","./main.js":"1SICI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
+},{"../scss/main.scss":"4Pg3x","axios":"jo6P5","./main.js":"1SICI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
 
 //# sourceMappingURL=book.f1ca5279.js.map
