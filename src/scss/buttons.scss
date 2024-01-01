@@ -35,26 +35,26 @@
   transition: background-color 0.3s, color 0.3s;
 }
 .btn-close:hover {
-  background-color: $secondarycolor;
+  border: 2px solid $secondarycolor;
   background-color: transparent !important;
   cursor: pointer;
   color: #ffffff;
 }
 .btn-search:hover {
-  background-color: $secondarycolor;
+  border: 1px solid $secondarycolor;
   background-color: transparent !important;
   cursor: pointer;
-  background-color: $secondarycolor;
+  color: $secondarycolor;
 }
 .btn-home:hover {
-  background-color: $secondarycolor;
+  border: 1px solid $secondarycolor;
   background-color: transparent !important;
   cursor: pointer;
-  background-color: $secondarycolor;
+  color: $secondarycolor;
 }
 .btn-description:hover {
-  background-color: $secondarycolor;
+  border: 1px solid $secondarycolor;
   background-color: transparent !important;
   cursor: pointer;
-  background-color: $secondarycolor;
+  color: $secondarycolor;
 }

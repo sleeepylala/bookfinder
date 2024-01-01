@@ -170,13 +170,14 @@ footer p {
 .btn-close:hover {
   cursor: pointer;
   color: #fff;
-  background-color: #ff686b;
+  border: 2px solid #ff686b;
   background-color: #0000 !important;
 }
 
 .btn-search:hover, .btn-home:hover, .btn-description:hover {
   cursor: pointer;
-  background-color: #ff686b;
+  color: #ff686b;
+  border: 1px solid #ff686b;
   background-color: #0000 !important;
 }
 
