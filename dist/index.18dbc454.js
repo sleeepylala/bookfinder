@@ -630,7 +630,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const jsonData = response.data;
             // Salva l'oggetto JSON nel Local Storage
             localStorage.setItem("jsonData", JSON.stringify(jsonData));
-            localStorage.setItem("inputSubject", inputSubject);
+            localStorage.setItem("inputSubject", inputSubject.toLowerCase());
             // Reindirizza alla pagina book.html
             window.location.href = "http://localhost:1234/book.html";
             inputCategory.value = "";
