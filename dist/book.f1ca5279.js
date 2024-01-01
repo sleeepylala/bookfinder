@@ -654,6 +654,7 @@ const createCard = function(image, title, authors, key) {
 };
 // Funzione per creare una modale
 const createModal = function(title, description, authors) {
+    document.body.classList.add("modal-open");
     const modal = document.createElement("div");
     modal.className = "modal";
     const overlay = document.createElement("div");
@@ -678,6 +679,7 @@ const createModal = function(title, description, authors) {
     contentContainer.appendChild(btnClose);
     modal.appendChild(contentContainer);
     btnClose.onclick = ()=>{
+        document.body.classList.remove("modal-open");
         modal.style.display = "none";
         overlay.remove();
     };
