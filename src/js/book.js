@@ -1,3 +1,5 @@
+// Import delle risorse esterne
+import _ from "lodash";
 import "../scss/main.scss";
 import axios from "axios";
 import { preventImageDrag } from "./main.js";
@@ -137,7 +139,9 @@ const createModal = function (title, description, authors) {
 function renderBooks() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const booksToDisplay = arrayBooks.slice(startIndex, endIndex);
+
+  // Utilizzo della funzione "slice" di lodash per ottenere una porzione dell'array
+  const booksToDisplay = _.slice(arrayBooks, startIndex, endIndex);
 
   scrollToTop();
   containerCards.innerHTML = "";
@@ -153,9 +157,10 @@ function renderBooks() {
 function updatePagination() {
   const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
 
-  link.forEach((el, index) => {
-    el.value = index + 1;
-    el.classList.toggle("active", currentPage === el.value);
+  // Utilizzo della funzione "times" di lodash per semplificare il loop
+  _.times(link.length, (index) => {
+    link[index].value = index + 1;
+    link[index].classList.toggle("active", currentPage === link[index].value);
   });
 
   btnBack.disabled = currentPage === 1;
@@ -167,7 +172,11 @@ function loadBooks() {
   if (jsonData && inputSubject) {
     displayCategory.innerHTML = `${inputSubject} books`;
     arrayBooks = jsonData.works;
-    renderBooks();
+
+    // Utilizzo della funzione "debounce" di lodash per ritardare l'esecuzione della funzione
+    const debouncedRenderBooks = _.debounce(renderBooks, 300);
+    debouncedRenderBooks();
+
     updatePagination();
     scrollToTop();
   }
@@ -201,7 +210,8 @@ function handleNextBtnClick() {
 
 // Aggiungo gli eventi agli elementi del DOM una volta che la pagina è caricata
 window.addEventListener("load", function () {
-  link.forEach((l) => l.addEventListener("click", handleLinkClick));
+  // Utilizzo della funzione "forEach" di lodash per semplificare l'iterazione
+  _.forEach(link, (l) => l.addEventListener("click", handleLinkClick));
 
   if (btnBack) {
     btnBack.addEventListener("click", handleBackBtnClick);

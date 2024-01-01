@@ -615,7 +615,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "love"
     ];
     // Funzione che verifica se una categoria è valida
-    const isValidCategory = (input)=>validCategories.includes(input.toLowerCase());
+    const isValidCategory = (input)=>(0, _lodashDefault.default).includes(validCategories, input.toLowerCase());
     // Funzione che ottiene i dati della categoria dalla Open Library
     const getCategory = async ()=>{
         const inputSubject = inputCategory.value;

@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Funzione che verifica se una categoria è valida
   const isValidCategory = (input) =>
-    validCategories.includes(input.toLowerCase());
+    _.includes(validCategories, input.toLowerCase());
 
   // Funzione che ottiene i dati della categoria dalla Open Library
   const getCategory = async () => {

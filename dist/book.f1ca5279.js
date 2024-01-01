@@ -575,7 +575,10 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"d4dL5":[function(require,module,exports) {
+// Import delle risorse esterne
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _lodash = require("lodash");
+var _lodashDefault = parcelHelpers.interopDefault(_lodash);
 var _mainScss = require("../scss/main.scss");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -685,7 +688,8 @@ const createModal = function(title, description, authors) {
 function renderBooks() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const booksToDisplay = arrayBooks.slice(startIndex, endIndex);
+    // Utilizzo della funzione "slice" di lodash per ottenere una porzione dell'array
+    const booksToDisplay = (0, _lodashDefault.default).slice(arrayBooks, startIndex, endIndex);
     scrollToTop();
     containerCards.innerHTML = "";
     booksToDisplay.forEach((element)=>{
@@ -697,9 +701,10 @@ function renderBooks() {
 // Funzione per aggiornare la paginazione
 function updatePagination() {
     const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
-    link.forEach((el, index)=>{
-        el.value = index + 1;
-        el.classList.toggle("active", currentPage === el.value);
+    // Utilizzo della funzione "times" di lodash per semplificare il loop
+    (0, _lodashDefault.default).times(link.length, (index)=>{
+        link[index].value = index + 1;
+        link[index].classList.toggle("active", currentPage === link[index].value);
     });
     btnBack.disabled = currentPage === 1;
     btnNext.disabled = currentPage === totalPages;
@@ -709,7 +714,9 @@ function loadBooks() {
     if (jsonData && inputSubject) {
         displayCategory.innerHTML = `${inputSubject} books`;
         arrayBooks = jsonData.works;
-        renderBooks();
+        // Utilizzo della funzione "debounce" di lodash per ritardare l'esecuzione della funzione
+        const debouncedRenderBooks = (0, _lodashDefault.default).debounce(renderBooks, 300);
+        debouncedRenderBooks();
         updatePagination();
         scrollToTop();
     }
@@ -739,7 +746,8 @@ function handleNextBtnClick() {
 }
 // Aggiungo gli eventi agli elementi del DOM una volta che la pagina è caricata
 window.addEventListener("load", function() {
-    link.forEach((l)=>l.addEventListener("click", handleLinkClick));
+    // Utilizzo della funzione "forEach" di lodash per semplificare l'iterazione
+    (0, _lodashDefault.default).forEach(link, (l)=>l.addEventListener("click", handleLinkClick));
     if (btnBack) btnBack.addEventListener("click", handleBackBtnClick);
     if (btnNext) btnNext.addEventListener("click", handleNextBtnClick);
     const btnHome = document.querySelector(".btn-home");
@@ -753,6 +761,6 @@ window.addEventListener("load", function() {
     loadBooks();
 });
 
-},{"../scss/main.scss":"4Pg3x","axios":"jo6P5","./main.js":"1SICI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
+},{"../scss/main.scss":"4Pg3x","axios":"jo6P5","./main.js":"1SICI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","lodash":"3qBDj"}],"4Pg3x":[function() {},{}]},["8MBMP","d4dL5"], "d4dL5", "parcelRequire28d3")
 
 //# sourceMappingURL=book.f1ca5279.js.map
