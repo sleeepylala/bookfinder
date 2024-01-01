@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     background-color: #fff;
-    color: #383838;
+    color: $fontcolor;
     padding: 10px 40px;
     border-radius: 6px;
     ul {
@@ -40,7 +40,7 @@ ul li.active {
   align-items: center;
   font-size: 22px;
   font-weight: 500;
-  color: #383838;
+  color: $fontcolor;
   background: transparent;
   outline: none;
   border: none;
