@@ -15,7 +15,7 @@ main {
   position: relative;
 }
 
-main .img-girl {
+main .img-girl, main .img-girl-small, main .img-girl-mobile {
   z-index: -1;
   position: absolute;
   bottom: 0;
@@ -127,6 +127,98 @@ footer p {
   font-style: italic;
   font-weight: 400;
   line-height: normal;
+}
+
+.img-girl {
+  display: block;
+}
+
+.img-girl-small, .img-girl-mobile {
+  display: none;
+}
+
+@media screen and (device-width >= 1500px) and (device-width <= 2000px) {
+  main {
+    padding: 80px 0;
+  }
+
+  .container-page {
+    margin-top: 60px;
+  }
+}
+
+@media screen and (width <= 1500px) {
+  .img-girl, .img-ball2 {
+    display: none;
+  }
+
+  .img-girl-small {
+    display: block;
+  }
+}
+
+@media screen and (width <= 1150px) {
+  .img-girl, .img-girl-small {
+    display: none;
+  }
+
+  .img-girl-mobile {
+    display: block;
+  }
+}
+
+@media screen and (width <= 877px) {
+  .img-girl, .img-girl-small, .img-girl-mobile {
+    display: none;
+  }
+
+  .img-ball2 {
+    display: block;
+  }
+}
+
+@media screen and (device-width >= 600px) and (device-width <= 770px) {
+  .img-girl, .img-girl-small, .img-girl-mobile {
+    display: none;
+  }
+
+  .img-ball2 {
+    display: block;
+  }
+
+  .title {
+    font-size: 90px !important;
+  }
+}
+
+@media screen and (device-width >= 200px) and (device-width <= 600px) {
+  .img-girl, .img-girl-small, .img-girl-mobile {
+    display: none;
+  }
+
+  .img-ball2 {
+    display: block;
+  }
+
+  .title {
+    font-size: 80px !important;
+  }
+
+  .logo {
+    width: 180px;
+  }
+
+  footer {
+    padding-top: 20px;
+  }
+
+  .link {
+    display: none;
+  }
+
+  .modal {
+    width: 400px !important;
+  }
 }
 
 .btn-search, .btn-home {

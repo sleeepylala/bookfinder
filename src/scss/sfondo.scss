@@ -1,1 +1,89 @@
+.img-girl {
+  display: block;
+}
 
+.img-girl-small,
+.img-girl-mobile {
+  display: none;
+}
+@media screen and (min-device-width: 1500px) and (max-device-width: 2000px) {
+  main {
+    padding: 80px 0;
+  }
+  .container-page {
+    margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .img-girl {
+    display: none;
+  }
+  .img-ball2 {
+    display: none;
+  }
+  .img-girl-small {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .img-girl,
+  .img-girl-small {
+    display: none;
+  }
+  .img-girl-mobile {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 877px) {
+  .img-girl,
+  .img-girl-small,
+  .img-girl-mobile {
+    display: none;
+  }
+  .img-ball2 {
+    display: block;
+  }
+}
+
+@media screen and (min-device-width: 600px) and (max-device-width: 770px) {
+  .img-girl,
+  .img-girl-small,
+  .img-girl-mobile {
+    display: none;
+  }
+  .img-ball2 {
+    display: block;
+  }
+  .title {
+    font-size: 90px !important;
+  }
+}
+
+@media screen and (min-device-width: 200px) and (max-device-width: 600px) {
+  .img-girl,
+  .img-girl-small,
+  .img-girl-mobile {
+    display: none;
+  }
+  .img-ball2 {
+    display: block;
+  }
+  .title {
+    font-size: 80px !important;
+  }
+  .logo {
+    width: 180px;
+  }
+  footer {
+    padding-top: 20px;
+  }
+  .link {
+    display: none;
+  }
+  .modal {
+    width: 400px !important;
+  }
+}

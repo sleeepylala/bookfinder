@@ -179,12 +179,10 @@ function updatePagination() {
   let startIndex = Math.max(currentPage - Math.floor(pagesToShow / 2), 1);
   let endIndex = Math.min(startIndex + pagesToShow - 1, totalPages);
 
-  // Se l'indice finale è troppo vicino al totale delle pagine, aggiusta l'indice iniziale
   if (endIndex - startIndex + 1 < pagesToShow) {
     startIndex = Math.max(endIndex - pagesToShow + 1, 1);
   }
 
-  // Pulizia della lista di paginazione
   let paginationList = document.querySelector(".pagination-list");
   paginationList.innerHTML = "";
 
@@ -197,7 +195,6 @@ function updatePagination() {
 
     paginationList.appendChild(listItem);
 
-    // Aggiungi la classe 'active' al link corrente
     if (i === currentPage) {
       listItem.classList.add("active");
     }
@@ -206,6 +203,7 @@ function updatePagination() {
   btnBack.disabled = currentPage === 1;
   btnNext.disabled = currentPage === totalPages;
 }
+
 // Funzione per caricare i libri
 function loadBooks() {
   if (jsonData && inputSubject) {
@@ -223,14 +221,11 @@ function loadBooks() {
   }
 }
 
-// Nuova funzione per gestire il click sui numeri di pagina
 function handlePageLinkClick(event) {
   console.log("click page");
 
   // Aggiorna la pagina corrente solo se il link cliccato non è già attivo
   if (!event.target.classList.contains("active")) {
-    console.log("Setting active class");
-    // Rimuovi la classe 'active' da tutti i link
     document
       .querySelectorAll(".link")
       .forEach((link) => link.classList.remove("active"));
@@ -238,7 +233,6 @@ function handlePageLinkClick(event) {
     // Aggiungi la classe 'active' al link cliccato
     event.target.classList.add("active");
 
-    // Aggiorna la pagina corrente
     currentPage = parseInt(event.target.value);
 
     // Ricerca nuovamente il primo link e aggiungi la classe 'active'
@@ -247,13 +241,12 @@ function handlePageLinkClick(event) {
       firstPageLink.classList.add("active");
     }
 
-    // Renderizza i libri e aggiorna la paginazione
     renderBooks();
     updatePagination();
   }
 }
 
-// Funzione per renderizzare le carte dei libri
+// Funzione per renderizzare le cardbook
 function renderBooks() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

@@ -1,8 +1,11 @@
 main {
   border: 1px solid green;
   width: 100%;
+
   position: relative;
-  .img-girl {
+  .img-girl,
+  .img-girl-small,
+  .img-girl-mobile {
     position: absolute;
     right: 0;
     bottom: 0;
