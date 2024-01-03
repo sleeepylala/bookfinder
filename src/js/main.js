@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       // Effettua una richiesta alla Open Library per ottenere i dati della categoria
       const response = await axios.get(
-        `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=72`
+        `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=300`
       );
       const jsonData = response.data;
 

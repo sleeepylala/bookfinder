@@ -371,8 +371,10 @@ footer p {
   display: flex;
 }
 
-.container-page .pagination ul {
+ul {
   margin: 20px;
+  padding: 0;
+  list-style: none;
 }
 
 ul li {
@@ -390,8 +392,7 @@ ul li {
 
 ul li.active {
   color: #fff;
-  background-image: linear-gradient(#ff4568, #ff4568);
-  background-repeat: no-repeat;
+  background-color: #ff4568 !important;
 }
 
 .btn1, .btn2 {

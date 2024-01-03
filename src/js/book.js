@@ -7,7 +7,6 @@ import { preventImageDrag } from "./main.js";
 // Seleziono gli elementi del DOM una sola volta
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
-const link = document.querySelectorAll(".link");
 const btnBack = document.querySelector(".btn1");
 const btnNext = document.querySelector(".btn2");
 
@@ -155,44 +154,126 @@ function renderBooks() {
   });
 }
 
+// Funzione per creare la lista e i suoi elementi
+function createPaginationList(start, end) {
+  let paginationList = document.querySelector(".pagination-list");
+
+  for (let i = start; i <= end; i++) {
+    let listItem = document.createElement("li");
+    listItem.className = "link";
+    listItem.setAttribute("value", i);
+    listItem.textContent = i;
+
+    paginationList.appendChild(listItem);
+  }
+}
+
 // Funzione per aggiornare la paginazione
 function updatePagination() {
   const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
 
-  // Utilizzo della funzione "times" di lodash per semplificare il loop
-  _.times(link.length, (index) => {
-    link[index].value = index + 1;
-    link[index].classList.toggle("active", currentPage === link[index].value);
-  });
+  // Numero di pagine da mostrare nella lista di paginazione
+  const pagesToShow = 5;
+
+  // Calcolo dell'indice iniziale e finale delle pagine da mostrare
+  let startIndex = Math.max(currentPage - Math.floor(pagesToShow / 2), 1);
+  let endIndex = Math.min(startIndex + pagesToShow - 1, totalPages);
+
+  // Se l'indice finale è troppo vicino al totale delle pagine, aggiusta l'indice iniziale
+  if (endIndex - startIndex + 1 < pagesToShow) {
+    startIndex = Math.max(endIndex - pagesToShow + 1, 1);
+  }
+
+  // Pulizia della lista di paginazione
+  let paginationList = document.querySelector(".pagination-list");
+  paginationList.innerHTML = "";
+
+  // Creazione delle nuove pagine
+  for (let i = startIndex; i <= endIndex; i++) {
+    let listItem = document.createElement("li");
+    listItem.className = "link";
+    listItem.setAttribute("value", i);
+    listItem.textContent = i;
+
+    paginationList.appendChild(listItem);
+
+    // Aggiungi la classe 'active' al link corrente
+    if (i === currentPage) {
+      listItem.classList.add("active");
+    }
+  }
 
   btnBack.disabled = currentPage === 1;
   btnNext.disabled = currentPage === totalPages;
 }
-
 // Funzione per caricare i libri
 function loadBooks() {
   if (jsonData && inputSubject) {
     displayCategory.innerHTML = `${inputSubject} books`;
     arrayBooks = jsonData.works;
-
-    // Utilizzo della funzione "debounce" di lodash per ritardare l'esecuzione della funzione
-    const debouncedRenderBooks = _.debounce(renderBooks, 300);
-    debouncedRenderBooks();
+    // Aggiungi la classe 'active' al primo link quando carichi i libri
+    const firstPageLink = document.querySelector(".link");
+    if (firstPageLink) {
+      firstPageLink.classList.add("active");
+    }
+    renderBooks();
 
     updatePagination();
     scrollToTop();
   }
 }
 
-// Funzione per gestire il click sui link
-function handleLinkClick(event) {
-  currentPage = parseInt(event.target.value);
-  renderBooks();
-  updatePagination();
+// Nuova funzione per gestire il click sui numeri di pagina
+function handlePageLinkClick(event) {
+  console.log("click page");
+
+  // Aggiorna la pagina corrente solo se il link cliccato non è già attivo
+  if (!event.target.classList.contains("active")) {
+    console.log("Setting active class");
+    // Rimuovi la classe 'active' da tutti i link
+    document
+      .querySelectorAll(".link")
+      .forEach((link) => link.classList.remove("active"));
+
+    // Aggiungi la classe 'active' al link cliccato
+    event.target.classList.add("active");
+
+    // Aggiorna la pagina corrente
+    currentPage = parseInt(event.target.value);
+
+    // Ricerca nuovamente il primo link e aggiungi la classe 'active'
+    const firstPageLink = document.querySelector(".link");
+    if (firstPageLink) {
+      firstPageLink.classList.add("active");
+    }
+
+    // Renderizza i libri e aggiorna la paginazione
+    renderBooks();
+    updatePagination();
+  }
+}
+
+// Funzione per renderizzare le carte dei libri
+function renderBooks() {
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Utilizzo della funzione "slice" di lodash per ottenere una porzione dell'array
+  const booksToDisplay = _.slice(arrayBooks, startIndex, endIndex);
+
+  scrollToTop();
+  containerCards.innerHTML = "";
+
+  booksToDisplay.forEach((element) => {
+    const { cover_id, title, authors, key } = element;
+    const bookCard = createCard(cover_id, title, authors[0].name, key);
+    containerCards.appendChild(bookCard);
+  });
 }
 
 // Funzione per gestire il click sul pulsante "Indietro"
 function handleBackBtnClick() {
+  console.log("click bottone 1");
   if (currentPage > 1) {
     currentPage--;
     renderBooks();
@@ -203,6 +284,7 @@ function handleBackBtnClick() {
 // Funzione per gestire il click sul pulsante "Avanti"
 function handleNextBtnClick() {
   const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
+  console.log("click bottone 2");
   if (currentPage < totalPages) {
     currentPage++;
     renderBooks();
@@ -212,9 +294,6 @@ function handleNextBtnClick() {
 
 // Aggiungo gli eventi agli elementi del DOM una volta che la pagina è caricata
 window.addEventListener("load", function () {
-  // Utilizzo della funzione "forEach" di lodash per semplificare l'iterazione
-  _.forEach(link, (l) => l.addEventListener("click", handleLinkClick));
-
   if (btnBack) {
     btnBack.addEventListener("click", handleBackBtnClick);
   }
@@ -235,4 +314,12 @@ window.addEventListener("load", function () {
 
   preventImageDrag();
   loadBooks();
+
+  document
+    .querySelector(".pagination-list")
+    .addEventListener("click", function (event) {
+      if (event.target.classList.contains("link")) {
+        handlePageLinkClick(event);
+      }
+    });
 });

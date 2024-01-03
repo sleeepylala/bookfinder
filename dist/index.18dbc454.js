@@ -626,7 +626,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         try {
             // Effettua una richiesta alla Open Library per ottenere i dati della categoria
-            const response = await (0, _axiosDefault.default).get(`https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=72`);
+            const response = await (0, _axiosDefault.default).get(`https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=300`);
             const jsonData = response.data;
             // Salva l'oggetto JSON nel Local Storage
             localStorage.setItem("jsonData", JSON.stringify(jsonData));
