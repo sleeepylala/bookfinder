@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const isValidCategory = (input) =>
     _.includes(validCategories, input.toLowerCase());
 
-  // Funzione che ottiene i dati della categoria dalla Open Library
   const getCategory = async () => {
     const inputSubject = inputCategory.value;
 
@@ -47,12 +46,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // Aggiungi la classe 'loading' al corpo del documento
+    document.body.classList.add("loading");
+
     try {
       // Effettua una richiesta alla Open Library per ottenere i dati della categoria
       const response = await axios.get(
-        `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=300`
+        `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=240`
       );
       const jsonData = response.data;
+
+      // Rimuovi la classe 'loading' dal corpo del documento
+      document.body.classList.remove("loading");
 
       // Salva l'oggetto JSON nel Local Storage
       localStorage.setItem("jsonData", JSON.stringify(jsonData));
@@ -63,7 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
       inputCategory.value = "";
       return jsonData;
     } catch (error) {
+      // Gestisci l'errore e rimuovi la classe 'loading' dal corpo del documento
       console.log(error);
+      document.body.classList.remove("loading");
     }
   };
 

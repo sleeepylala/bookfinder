@@ -616,7 +616,6 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
     // Funzione che verifica se una categoria è valida
     const isValidCategory = (input)=>(0, _lodashDefault.default).includes(validCategories, input.toLowerCase());
-    // Funzione che ottiene i dati della categoria dalla Open Library
     const getCategory = async ()=>{
         const inputSubject = inputCategory.value;
         // Verifica se la categoria è valida
@@ -624,10 +623,14 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Invalid input. Please enter a valid category.");
             return;
         }
+        // Aggiungi la classe 'loading' al corpo del documento
+        document.body.classList.add("loading");
         try {
             // Effettua una richiesta alla Open Library per ottenere i dati della categoria
-            const response = await (0, _axiosDefault.default).get(`https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=300`);
+            const response = await (0, _axiosDefault.default).get(`https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=240`);
             const jsonData = response.data;
+            // Rimuovi la classe 'loading' dal corpo del documento
+            document.body.classList.remove("loading");
             // Salva l'oggetto JSON nel Local Storage
             localStorage.setItem("jsonData", JSON.stringify(jsonData));
             localStorage.setItem("inputSubject", inputSubject.toLowerCase());
@@ -636,7 +639,9 @@ document.addEventListener("DOMContentLoaded", function() {
             inputCategory.value = "";
             return jsonData;
         } catch (error) {
+            // Gestisci l'errore e rimuovi la classe 'loading' dal corpo del documento
             console.log(error);
+            document.body.classList.remove("loading");
         }
     };
     // Gestore dell'evento di clic sulla ricerca
