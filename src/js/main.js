@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("inputSubject", inputSubject.toLowerCase());
 
       // Reindirizza alla pagina book.html
-      window.location.href = "http://localhost:1234/book.html";
+      window.location.href = "book.html";
       inputCategory.value = "";
       return jsonData;
     } catch (error) {
