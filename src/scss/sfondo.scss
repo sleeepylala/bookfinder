@@ -3,7 +3,8 @@
 }
 
 .img-girl-small,
-.img-girl-mobile {
+.img-girl-mobile,
+.img-mobile {
   display: none;
 }
 @media screen and (min-device-width: 1500px) and (max-device-width: 2000px) {
@@ -19,10 +20,9 @@
   .img-girl {
     display: none;
   }
+
+  .img-girl-small,
   .img-ball2 {
-    display: none;
-  }
-  .img-girl-small {
     display: block;
   }
 }
@@ -31,9 +31,6 @@
   .img-girl,
   .img-girl-small {
     display: none;
-  }
-  .img-girl-mobile {
-    display: block;
   }
 }
 
@@ -62,23 +59,49 @@
   }
 }
 
-@media screen and (min-device-width: 200px) and (max-device-width: 600px) {
+@media screen and (min-device-width: 300px) and (max-device-width: 600px) {
   .img-girl,
   .img-girl-small,
-  .img-girl-mobile {
+  .img-ball2,
+  .img-ball {
     display: none;
   }
-  .img-ball2 {
+  .img-girl-mobile {
     display: block;
   }
+  .h1-container {
+    padding: 70px 30px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center;
+    text-align: center;
+  }
+  .h2-container {
+    padding: 30px 40px !important;
+    text-align: center;
+  }
   .title {
-    font-size: 80px !important;
+    font-size: 45px !important;
   }
   .logo {
-    width: 180px;
+    width: 160px;
+  }
+  input {
+    padding-left: 20px !important;
+    font-size: 15px !important;
+  }
+  .container-input-search {
+    padding: 70px 40px !important;
+  }
+  .btn-search {
+    width: 70px !important;
+    margin-left: -80px !important;
+  }
+  nav {
+    padding: 40px 30px;
   }
   footer {
-    padding-top: 20px;
+    height: auto;
   }
   .link {
     display: none;

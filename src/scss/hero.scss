@@ -4,13 +4,18 @@ main {
 
   position: relative;
   .img-girl,
-  .img-girl-small,
-  .img-girl-mobile {
+  .img-girl-small {
     position: absolute;
     right: 0;
     bottom: 0;
     z-index: -1;
   }
+  .img-girl-mobile {
+    width: 100%;
+    max-width: 450px;
+    left: 50%;
+  }
+
   .img-ball {
     position: absolute;
     bottom: 0;

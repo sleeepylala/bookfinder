@@ -15,11 +15,17 @@ main {
   position: relative;
 }
 
-main .img-girl, main .img-girl-small, main .img-girl-mobile {
+main .img-girl, main .img-girl-small {
   z-index: -1;
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+main .img-girl-mobile {
+  width: 100%;
+  max-width: 450px;
+  left: 50%;
 }
 
 main .img-ball {
@@ -133,7 +139,7 @@ footer p {
   display: block;
 }
 
-.img-girl-small, .img-girl-mobile {
+.img-girl-small, .img-girl-mobile, .img-mobile {
   display: none;
 }
 
@@ -148,11 +154,11 @@ footer p {
 }
 
 @media screen and (width <= 1500px) {
-  .img-girl, .img-ball2 {
+  .img-girl {
     display: none;
   }
 
-  .img-girl-small {
+  .img-girl-small, .img-ball2 {
     display: block;
   }
 }
@@ -160,10 +166,6 @@ footer p {
 @media screen and (width <= 1150px) {
   .img-girl, .img-girl-small {
     display: none;
-  }
-
-  .img-girl-mobile {
-    display: block;
   }
 }
 
@@ -191,25 +193,56 @@ footer p {
   }
 }
 
-@media screen and (device-width >= 200px) and (device-width <= 600px) {
-  .img-girl, .img-girl-small, .img-girl-mobile {
+@media screen and (device-width >= 300px) and (device-width <= 600px) {
+  .img-girl, .img-girl-small, .img-ball2, .img-ball {
     display: none;
   }
 
-  .img-ball2 {
+  .img-girl-mobile {
     display: block;
   }
 
+  .h1-container {
+    text-align: center;
+    align-items: center;
+    justify-content: center !important;
+    padding: 70px 30px !important;
+    display: flex !important;
+  }
+
+  .h2-container {
+    text-align: center;
+    padding: 30px 40px !important;
+  }
+
   .title {
-    font-size: 80px !important;
+    font-size: 45px !important;
   }
 
   .logo {
-    width: 180px;
+    width: 160px;
+  }
+
+  input {
+    padding-left: 20px !important;
+    font-size: 15px !important;
+  }
+
+  .container-input-search {
+    padding: 70px 40px !important;
+  }
+
+  .btn-search {
+    width: 70px !important;
+    margin-left: -80px !important;
+  }
+
+  nav {
+    padding: 40px 30px;
   }
 
   footer {
-    padding-top: 20px;
+    height: auto;
   }
 
   .link {
