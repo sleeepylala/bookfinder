@@ -290,6 +290,16 @@ footer p {
 
   .modal {
     width: 400px !important;
+    padding: 50px 20px !important;
+  }
+
+  .modal p {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .btn-close {
+    left: 125px !important;
   }
 }
 
@@ -435,6 +445,7 @@ footer p {
 
 .modal {
   z-index: 1040;
+  opacity: 0;
   background: var(--Windows-Glass, #a3a3a34d);
   background-blend-mode: luminosity;
   -webkit-backdrop-filter: blur(50px);
@@ -450,10 +461,16 @@ footer p {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)scale(.8);
 }
 
-.modal h1 {
+.modal.show {
+  opacity: 1;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+  transform: translate(-50%, -50%)scale(1);
+}
+
+h1 {
   color: #fff;
   text-align: center;
   font-family: Poppins;
@@ -462,7 +479,7 @@ footer p {
   line-height: 30px;
 }
 
-.modal h2 {
+h2 {
   color: #fff;
   text-align: center;
   padding-top: 10px;
@@ -473,9 +490,12 @@ footer p {
   line-height: 20px;
 }
 
-.modal .description {
+.description {
   color: #fff;
   text-align: center;
+  word-wrap: break-word;
+  max-width: 100%;
+  margin: 0 auto;
   padding-top: 40px;
   font-family: Poppins;
   font-size: 16px;

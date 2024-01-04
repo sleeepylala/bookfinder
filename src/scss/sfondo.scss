@@ -139,5 +139,14 @@
   }
   .modal {
     width: 400px !important;
+    padding: 50px 20px !important;
+
+    p {
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+  .btn-close {
+    left: 125 !important;
   }
 }

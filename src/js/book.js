@@ -91,7 +91,6 @@ const createCard = function (image, title, authors, key) {
 
   return card;
 };
-
 // Funzione per creare una modale
 const createModal = function (title, description, authors) {
   document.body.classList.add("modal-open");
@@ -132,7 +131,14 @@ const createModal = function (title, description, authors) {
     overlay.remove();
   };
 
+  // Aggiungi il tuo elemento modal al DOM
   document.body.appendChild(modal);
+
+  // Applica la classe 'show' dopo un ritardo di 50ms per far sì che l'animazione venga eseguita
+  setTimeout(() => {
+    modal.classList.add("show");
+  }, 50);
+
   modal.style.display = "block";
 };
 

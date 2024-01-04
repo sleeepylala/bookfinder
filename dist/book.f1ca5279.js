@@ -682,7 +682,12 @@ const createModal = function(title, description, authors) {
         modal.style.display = "none";
         overlay.remove();
     };
+    // Aggiungi il tuo elemento modal al DOM
     document.body.appendChild(modal);
+    // Applica la classe 'show' dopo un ritardo di 50ms per far sì che l'animazione venga eseguita
+    setTimeout(()=>{
+        modal.classList.add("show");
+    }, 50);
     modal.style.display = "block";
 };
 // Funzione per renderizzare le carte dei libri

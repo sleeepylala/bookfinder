@@ -2,8 +2,9 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.8);
   z-index: 1040;
+  opacity: 0;
 
   width: 801px;
   height: 493px;
@@ -19,35 +20,46 @@
 
   /* Blur */
   backdrop-filter: blur(50px);
-  h1 {
-    color: #fff;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 30px;
-    font-weight: 400;
-    line-height: 30px;
-  }
-  h2 {
-    padding-top: 10px;
-    color: #fff;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-  }
-  .description {
-    padding-top: 40px;
-    color: #fff;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
 }
+
+.modal.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 30px;
+}
+h2 {
+  padding-top: 10px;
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+.description {
+  padding-top: 40px;
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  word-wrap: break-word; /* Aggiunto per gestire l'overflow orizzontale */
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 .content-container {
   display: flex;
   flex-direction: column;
@@ -67,6 +79,7 @@
 .content-container::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
 .overlay {
   position: fixed;
   top: 0;
