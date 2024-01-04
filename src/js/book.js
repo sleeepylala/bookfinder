@@ -4,7 +4,6 @@ import "../scss/main.scss";
 import axios from "axios";
 import { preventImageDrag } from "./main.js";
 
-// Seleziono gli elementi del DOM una sola volta
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
 const btnBack = document.querySelector(".btn1");
@@ -131,10 +130,8 @@ const createModal = function (title, description, authors) {
     overlay.remove();
   };
 
-  // Aggiungi il tuo elemento modal al DOM
   document.body.appendChild(modal);
 
-  // Applica la classe 'show' dopo un ritardo di 50ms per far sì che l'animazione venga eseguita
   setTimeout(() => {
     modal.classList.add("show");
   }, 50);
@@ -147,7 +144,6 @@ function renderBooks() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // Utilizzo della funzione "slice" di lodash per ottenere una porzione dell'array
   const booksToDisplay = _.slice(arrayBooks, startIndex, endIndex);
 
   scrollToTop();
@@ -178,7 +174,6 @@ function createPaginationList(start, end) {
 function updatePagination() {
   const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
 
-  // Numero di pagine da mostrare nella lista di paginazione
   const pagesToShow = 5;
 
   // Calcolo dell'indice iniziale e finale delle pagine da mostrare
@@ -226,22 +221,19 @@ function loadBooks() {
     scrollToTop();
   }
 }
-
+// Funzione per gestire la pagina che è attualmente cliccata
 function handlePageLinkClick(event) {
   console.log("click page");
 
-  // Aggiorna la pagina corrente solo se il link cliccato non è già attivo
   if (!event.target.classList.contains("active")) {
     document
       .querySelectorAll(".link")
       .forEach((link) => link.classList.remove("active"));
 
-    // Aggiungi la classe 'active' al link cliccato
     event.target.classList.add("active");
 
     currentPage = parseInt(event.target.value);
 
-    // Ricerca nuovamente il primo link e aggiungi la classe 'active'
     const firstPageLink = document.querySelector(".link");
     if (firstPageLink) {
       firstPageLink.classList.add("active");
@@ -257,7 +249,6 @@ function renderBooks() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // Utilizzo della funzione "slice" di lodash per ottenere una porzione dell'array
   const booksToDisplay = _.slice(arrayBooks, startIndex, endIndex);
 
   scrollToTop();

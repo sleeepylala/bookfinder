@@ -583,7 +583,6 @@ var _mainScss = require("../scss/main.scss");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _mainJs = require("./main.js");
-// Seleziono gli elementi del DOM una sola volta
 const displayCategory = document.querySelector(".category");
 const containerCards = document.querySelector(".container-cards");
 const btnBack = document.querySelector(".btn1");
@@ -682,9 +681,7 @@ const createModal = function(title, description, authors) {
         modal.style.display = "none";
         overlay.remove();
     };
-    // Aggiungi il tuo elemento modal al DOM
     document.body.appendChild(modal);
-    // Applica la classe 'show' dopo un ritardo di 50ms per far sì che l'animazione venga eseguita
     setTimeout(()=>{
         modal.classList.add("show");
     }, 50);
@@ -694,7 +691,6 @@ const createModal = function(title, description, authors) {
 function renderBooks() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    // Utilizzo della funzione "slice" di lodash per ottenere una porzione dell'array
     const booksToDisplay = (0, _lodashDefault.default).slice(arrayBooks, startIndex, endIndex);
     scrollToTop();
     containerCards.innerHTML = "";
@@ -718,7 +714,6 @@ function createPaginationList(start, end) {
 // Funzione per aggiornare la paginazione
 function updatePagination() {
     const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
-    // Numero di pagine da mostrare nella lista di paginazione
     const pagesToShow = 5;
     // Calcolo dell'indice iniziale e finale delle pagine da mostrare
     let startIndex = Math.max(currentPage - Math.floor(pagesToShow / 2), 1);
@@ -751,15 +746,13 @@ function loadBooks() {
         scrollToTop();
     }
 }
+// Funzione per gestire la pagina che è attualmente cliccata
 function handlePageLinkClick(event) {
     console.log("click page");
-    // Aggiorna la pagina corrente solo se il link cliccato non è già attivo
     if (!event.target.classList.contains("active")) {
         document.querySelectorAll(".link").forEach((link)=>link.classList.remove("active"));
-        // Aggiungi la classe 'active' al link cliccato
         event.target.classList.add("active");
         currentPage = parseInt(event.target.value);
-        // Ricerca nuovamente il primo link e aggiungi la classe 'active'
         const firstPageLink = document.querySelector(".link");
         if (firstPageLink) firstPageLink.classList.add("active");
         renderBooks();
@@ -770,7 +763,6 @@ function handlePageLinkClick(event) {
 function renderBooks() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    // Utilizzo della funzione "slice" di lodash per ottenere una porzione dell'array
     const booksToDisplay = (0, _lodashDefault.default).slice(arrayBooks, startIndex, endIndex);
     scrollToTop();
     containerCards.innerHTML = "";

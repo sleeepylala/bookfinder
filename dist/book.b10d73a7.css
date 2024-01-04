@@ -1,7 +1,6 @@
 @import "https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@1,100;1,300;1,400&family=Press+Start+2P&display=swap";
 nav {
   background-color: #fff;
-  border: 1px solid red;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -10,7 +9,6 @@ nav {
 }
 
 main {
-  border: 1px solid green;
   flex-grow: 1;
   width: 100%;
   position: relative;
@@ -41,7 +39,6 @@ main .img-ball2 {
 }
 
 main .h1-container {
-  border: 5px solid red;
   justify-content: flex-start;
   padding: 100px 100px 40px;
   display: flex;
@@ -55,7 +52,6 @@ main .h1-container h1 {
 }
 
 main .h2-container {
-  border: 5px solid #30f;
   justify-content: flex-start;
   padding: 10px 100px;
   display: flex;
@@ -400,7 +396,6 @@ footer p {
 }
 
 .cards .container-cards {
-  border: 2px solid #00f;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 70px;
@@ -575,7 +570,6 @@ h2 {
 }
 
 .container-page {
-  border: 3px solid red;
   justify-content: center;
   align-items: center;
   width: 100%;

@@ -3,9 +3,7 @@ import _ from "lodash";
 import "../scss/main.scss";
 import axios from "axios";
 
-// Funzione principale che si attiva quando il DOM è completamente caricato
 document.addEventListener("DOMContentLoaded", function () {
-  // Seleziona gli elementi del DOM
   const buttonSearch = document.querySelector(".btn-search");
   const inputCategory = document.querySelector("#site-search");
 
@@ -40,13 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const getCategory = async () => {
     const inputSubject = inputCategory.value;
 
-    // Verifica se la categoria è valida
     if (!isValidCategory(inputSubject)) {
       alert("Invalid input. Please enter a valid category.");
       return;
     }
 
-    // Aggiungi la classe 'loading' al corpo del documento
     document.body.classList.add("loading");
 
     try {
@@ -56,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       const jsonData = response.data;
 
-      // Rimuovi la classe 'loading' dal corpo del documento
       document.body.classList.remove("loading");
 
       // Salva l'oggetto JSON nel Local Storage
@@ -68,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
       inputCategory.value = "";
       return jsonData;
     } catch (error) {
-      // Gestisci l'errore e rimuovi la classe 'loading' dal corpo del documento
       console.log(error);
       document.body.classList.remove("loading");
     }
@@ -83,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Aggiunge gli eventi ai pulsanti di ricerca e all'input
   if (buttonSearch) {
     buttonSearch.addEventListener("click", btnSearchHandler);
   }
@@ -95,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
   preventImageDrag();
 });
 
-// drag-prevention.js
 // Funzione per prevenire il trascinamento delle immagini
 export function preventImageDrag() {
   const images = document.querySelectorAll("img");
