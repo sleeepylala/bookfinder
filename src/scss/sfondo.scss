@@ -1,12 +1,11 @@
-.img-girl {
+.img-girl,
+.img-ball,
+.img-ball2 {
   display: block;
 }
 
-.img-girl-small,
 .img-girl-mobile,
-.img-mobile,
-.img-ball,
-.img-ball2 {
+.img-girl-small {
   display: none;
 }
 
@@ -30,10 +29,27 @@
   }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (min-device-width: 1200px) and (max-width: 1400px) {
   .img-girl,
   .img-girl-small {
     display: none;
+  }
+
+  .modal {
+    width: 700px !important;
+    padding: 50px 20px !important;
+
+    p {
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+  .btn-close {
+    left: 165 !important;
+  }
+  input {
+    padding-left: 15px !important;
+    font-size: 15px !important;
   }
 }
 
@@ -43,7 +59,6 @@
     display: none;
   }
   .img-ball2,
-  .img-girl,
   .img-ball {
     display: block;
   }
@@ -57,10 +72,7 @@
   .title {
     padding-bottom: 80px;
   }
-  .img-girl {
-    width: 500px;
-    right: auto;
-  }
+
   .container-cards {
     padding: 200px 0 !important;
     gap: 220px !important;
@@ -88,6 +100,18 @@
   .footer-book {
     height: 300px;
   }
+  .modal {
+    width: 400px !important;
+    padding: 50px 20px !important;
+
+    p {
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+  .btn-close {
+    left: 120 !important;
+  }
 }
 
 @media screen and (min-device-width: 300px) and (max-device-width: 630px) {
@@ -99,6 +123,9 @@
   }
   .img-girl-mobile {
     display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .h1-container {
     padding: 70px 30px !important;
@@ -110,19 +137,23 @@
   .h2-container {
     padding: 30px 40px !important;
     text-align: center;
+    justify-content: center !important;
+    align-items: center;
   }
   .title {
-    font-size: 45px !important;
+    font-size: 50px !important;
   }
   .logo {
     width: 160px;
   }
   input {
-    padding-left: 20px !important;
+    padding-left: 18px !important;
     font-size: 15px !important;
   }
   .container-input-search {
     padding: 70px 40px !important;
+    justify-content: center !important;
+    align-items: center;
   }
   .btn-search {
     width: 70px !important;
@@ -138,7 +169,7 @@
     display: none;
   }
   .modal {
-    width: 400px !important;
+    width: 350px !important;
     padding: 50px 20px !important;
 
     p {
@@ -147,6 +178,6 @@
     }
   }
   .btn-close {
-    left: 125 !important;
+    left: 95 !important;
   }
 }

@@ -136,11 +136,11 @@ footer p {
   line-height: normal;
 }
 
-.img-girl {
+.img-girl, .img-ball, .img-ball2 {
   display: block;
 }
 
-.img-girl-small, .img-girl-mobile, .img-mobile, .img-ball, .img-ball2 {
+.img-girl-mobile, .img-girl-small {
   display: none;
 }
 
@@ -164,9 +164,28 @@ footer p {
   }
 }
 
-@media screen and (width <= 1150px) {
+@media screen and (device-width >= 1200px) and (width <= 1400px) {
   .img-girl, .img-girl-small {
     display: none;
+  }
+
+  .modal {
+    width: 700px !important;
+    padding: 50px 20px !important;
+  }
+
+  .modal p {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .btn-close {
+    left: 165px !important;
+  }
+
+  input {
+    padding-left: 15px !important;
+    font-size: 15px !important;
   }
 }
 
@@ -175,7 +194,7 @@ footer p {
     display: none;
   }
 
-  .img-ball2, .img-girl, .img-ball {
+  .img-ball2, .img-ball {
     display: block;
   }
 
@@ -189,11 +208,6 @@ footer p {
 
   .title {
     padding-bottom: 80px;
-  }
-
-  .img-girl {
-    width: 500px;
-    right: auto;
   }
 
   .container-cards {
@@ -230,6 +244,20 @@ footer p {
   .footer-book {
     height: 300px;
   }
+
+  .modal {
+    width: 400px !important;
+    padding: 50px 20px !important;
+  }
+
+  .modal p {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .btn-close {
+    left: 120px !important;
+  }
 }
 
 @media screen and (device-width >= 300px) and (device-width <= 630px) {
@@ -239,6 +267,9 @@ footer p {
 
   .img-girl-mobile {
     display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .h1-container {
@@ -251,11 +282,13 @@ footer p {
 
   .h2-container {
     text-align: center;
+    align-items: center;
+    justify-content: center !important;
     padding: 30px 40px !important;
   }
 
   .title {
-    font-size: 45px !important;
+    font-size: 50px !important;
   }
 
   .logo {
@@ -263,11 +296,13 @@ footer p {
   }
 
   input {
-    padding-left: 20px !important;
+    padding-left: 18px !important;
     font-size: 15px !important;
   }
 
   .container-input-search {
+    align-items: center;
+    justify-content: center !important;
     padding: 70px 40px !important;
   }
 
@@ -289,7 +324,7 @@ footer p {
   }
 
   .modal {
-    width: 400px !important;
+    width: 350px !important;
     padding: 50px 20px !important;
   }
 
@@ -299,7 +334,7 @@ footer p {
   }
 
   .btn-close {
-    left: 125px !important;
+    left: 95px !important;
   }
 }
 
