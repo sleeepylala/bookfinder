@@ -4,9 +4,12 @@
 
 .img-girl-small,
 .img-girl-mobile,
-.img-mobile {
+.img-mobile,
+.img-ball,
+.img-ball2 {
   display: none;
 }
+
 @media screen and (min-device-width: 1500px) and (max-device-width: 2000px) {
   main {
     padding: 80px 0;
@@ -34,28 +37,31 @@
   }
 }
 
-@media screen and (max-width: 877px) {
-  .img-girl,
-  .img-girl-small,
-  .img-girl-mobile {
+@media screen and (min-device-width: 600px) and (max-device-width: 1200px) {
+  .img-girl-mobile,
+  .img-girl-small {
     display: none;
   }
-  .img-ball2 {
-    display: block;
-  }
-}
-
-@media screen and (min-device-width: 600px) and (max-device-width: 770px) {
+  .img-ball2,
   .img-girl,
-  .img-girl-small,
-  .img-girl-mobile {
-    display: none;
-  }
-  .img-ball2 {
+  .img-ball {
     display: block;
   }
   .title {
-    font-size: 90px !important;
+    font-size: 100px !important;
+  }
+  h2 {
+    font-size: 25px !important;
+  }
+  main {
+    padding-bottom: 400px;
+  }
+  .title {
+    padding-bottom: 80px;
+  }
+  .img-girl {
+    width: 500px;
+    right: auto;
   }
 }
 
