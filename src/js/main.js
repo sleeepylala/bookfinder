@@ -59,7 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("inputSubject", inputSubject.toLowerCase());
 
       // Reindirizza alla pagina book.html
-      window.location.href = "../pages/book.html";
+      const currentURL = new URL(window.location.href);
+      currentURL.pathname = "/pages/book.html";
+      window.location.href = currentURL.href;
       inputCategory.value = "";
       return jsonData;
     } catch (error) {
