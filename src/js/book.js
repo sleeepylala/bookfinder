@@ -90,9 +90,10 @@ const createCard = function (image, title, authors, key) {
 
   return card;
 };
-// Funzione per creare una modale
 const createModal = function (title, description, authors) {
+  // Aggiungi la classe modal-open al corpo del documento
   document.body.classList.add("modal-open");
+
   const modal = document.createElement("div");
   modal.className = "modal";
   const overlay = document.createElement("div");
@@ -125,6 +126,7 @@ const createModal = function (title, description, authors) {
   modal.appendChild(contentContainer);
 
   btnClose.onclick = () => {
+    // Rimuovi la classe modal-open quando la modale viene chiusa
     document.body.classList.remove("modal-open");
     modal.style.display = "none";
     overlay.remove();
