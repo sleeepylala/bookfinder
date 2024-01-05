@@ -245,7 +245,7 @@ function handlePageLinkClick(event) {
 }
 
 // Funzione per renderizzare le cardbook
-function renderBooks() {
+function _renderCard() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
@@ -266,7 +266,7 @@ function handleBackBtnClick() {
   console.log("click bottone 1");
   if (currentPage > 1) {
     currentPage--;
-    renderBooks();
+    _renderCard();
     updatePagination();
   }
 }
@@ -277,7 +277,7 @@ function handleNextBtnClick() {
   console.log("click bottone 2");
   if (currentPage < totalPages) {
     currentPage++;
-    renderBooks();
+    _renderCard();
     updatePagination();
   }
 }
@@ -298,7 +298,7 @@ window.addEventListener("load", function () {
       localStorage.removeItem("jsonData");
       localStorage.removeItem("inputSubject");
       console.log("Dati rimossi dal Local Storage");
-      window.history.back();
+      window.location.href = "/index.html";
     });
   }
 
