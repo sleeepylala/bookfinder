@@ -215,19 +215,41 @@ function updatePagination() {
 }
 
 // Funzione per caricare i libri
-function loadBooks() {
+async function loadBooks() {
   if (jsonData && inputSubject) {
     displayCategory.innerHTML = `${inputSubject} books`;
     arrayBooks = jsonData.works;
-    // Aggiungi la classe 'active' al primo link quando carichi i libri
-    const firstPageLink = document.querySelector(".link");
-    if (firstPageLink) {
-      firstPageLink.classList.add("active");
-    }
-    renderBooks();
 
-    updatePagination();
-    scrollToTop();
+    const totalPages = Math.ceil(arrayBooks.length / itemsPerPage);
+
+    // Creazione di un array di promesse per le richieste API
+    const requests = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      const request = axios.get(
+        `https://openlibrary.org/subjects/${inputSubject.toLowerCase()}.json?limit=12&page=${i}`
+      );
+      requests.push(request);
+    }
+
+    try {
+      const responses = await Promise.all(requests);
+
+      // Gestisci le risposte
+      responses.forEach((response) => {
+        const responseData = response.data;
+
+        arrayBooks.push(...responseData.works);
+      });
+
+      renderBooks();
+
+      updatePagination();
+
+      scrollToTop();
+    } catch (error) {
+      console.error(`Errore durante il recupero dei dati: ${error}`);
+    }
   }
 }
 // Funzione per gestire la pagina che è attualmente cliccata
