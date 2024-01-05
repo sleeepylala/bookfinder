@@ -7,7 +7,7 @@ Hi people! I'm excited to share with you my web application where you can find t
 Here you will find every book that you want! After typing your favorite book's category it'll show a list with all the book that you would love to read, and with a simple click you can also read the book's description. Just find the perfect book for you and immerse in it!
 
 # Try it
--  https://sleeepylala.github.io/counterproject/
+(https://bookfinder-application.web.app/index.html)
 
 # Built with
 
