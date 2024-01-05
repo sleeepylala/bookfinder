@@ -5,6 +5,7 @@
   transform: translate(-50%, -50%) scale(0.8);
   z-index: 1040;
   opacity: 0;
+  overflow-y: auto;
 
   width: 801px;
   height: 493px;
@@ -79,6 +80,7 @@ h2 {
 .content-container::-webkit-scrollbar-track {
   background-color: transparent;
 }
+/* ... (resto del codice rimane invariato) */
 
 .overlay {
   position: fixed;
@@ -89,6 +91,7 @@ h2 {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
+
 .modal-open {
   overflow: hidden;
 }

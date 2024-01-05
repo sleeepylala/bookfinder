@@ -90,15 +90,17 @@ const createCard = function (image, title, authors, key) {
 
   return card;
 };
+// Funzione createModale
 const createModal = function (title, description, authors) {
-  // Aggiungi la classe modal-open al corpo del documento
   document.body.classList.add("modal-open");
 
   const modal = document.createElement("div");
   modal.className = "modal";
+
   const overlay = document.createElement("div");
   overlay.className = "overlay";
   document.body.appendChild(overlay);
+
   const contentContainer = document.createElement("div");
   contentContainer.className = "content-container";
 
@@ -126,16 +128,21 @@ const createModal = function (title, description, authors) {
   modal.appendChild(contentContainer);
 
   btnClose.onclick = () => {
-    // Rimuovi la classe modal-open quando la modale viene chiusa
     document.body.classList.remove("modal-open");
+
     modal.style.display = "none";
     overlay.remove();
+
+    document.body.style.overflow = "auto";
   };
 
   document.body.appendChild(modal);
 
   setTimeout(() => {
     modal.classList.add("show");
+
+    // Impedisci lo scroll del body quando la modale è aperta
+    document.body.style.overflow = "hidden";
   }, 50);
 
   modal.style.display = "block";

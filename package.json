@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel src/pages/*.html",
-    "build": "parcel build src/pages/*.html"
+    "start": "parcel build 'src/pages/*.html'",
+    "generate": "parcel build 'src/pages/*.html'"
   },
   "keywords": [],
   "author": "",
