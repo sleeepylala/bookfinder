@@ -224,12 +224,12 @@ function loadBooks() {
     if (firstPageLink) {
       firstPageLink.classList.add("active");
     }
-  }
-  renderBooks();
-  updatePagination();
-  scrollToTop();
-}
+    renderBooks();
 
+    updatePagination();
+    scrollToTop();
+  }
+}
 // Funzione per gestire la pagina che è attualmente cliccata
 function handlePageLinkClick(event) {
   console.log("click page");

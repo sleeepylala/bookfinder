@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "children's",
     "young adult",
     "love",
+    "drama",
+    "erotic",
   ];
 
   // Funzione che verifica se una categoria è valida
