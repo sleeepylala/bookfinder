@@ -1,0 +1,25 @@
+[debug] [2024-01-04T23:03:16.089Z] ----------------------------------------------------------------------
+[debug] [2024-01-04T23:03:16.090Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2024-01-04T23:03:16.090Z] CLI Version:   13.0.2
+[debug] [2024-01-04T23:03:16.090Z] Platform:      darwin
+[debug] [2024-01-04T23:03:16.090Z] Node Version:  v18.18.1
+[debug] [2024-01-04T23:03:16.098Z] Time:          Fri Jan 05 2024 00:03:16 GMT+0100 (GMT+01:00)
+[debug] [2024-01-04T23:03:16.098Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-01-04T23:03:16.139Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-01-04T23:03:16.139Z] > authorizing via signed-in user (ilariaferrauti@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/lala/Desktop/GitHub/bookfinder
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
